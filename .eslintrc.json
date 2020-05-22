@@ -1,0 +1,15 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "react-app", "airbnb"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "plugins": [
+        "react"
+    ]
+}
