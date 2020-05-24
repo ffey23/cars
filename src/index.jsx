@@ -2,12 +2,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { Provider } from 'mobx-react';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import cars from './stores/cars';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider cars={cars}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
