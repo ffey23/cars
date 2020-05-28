@@ -43,7 +43,6 @@ class Pagination {
 
       // when filters change, go to the first page
       setFilters = (filters) => {
-        console.log(filters);
         this.filters = filters;
         this.currentPage = 1;
       }
