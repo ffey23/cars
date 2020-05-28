@@ -1,3 +1,5 @@
+const nestedProperty = require('nested-property');
+
 /**
  *
  * @param {Object[]} list - list to sort
@@ -8,20 +10,20 @@
 export default function sortList(list, sortBy) {
   const { field, desc } = sortBy;
   const sortedList = list.slice().sort((a, b) => {
-    if (typeof a[field] === 'string') {
-      if (a[field].toLowerCase() < b[field].toLowerCase()) {
+    if (typeof nestedProperty.get(a, field) === 'string') {
+      if (nestedProperty.get(a, field).toLowerCase() < nestedProperty.get(b, field).toLowerCase()) {
         return desc ? 1 : -1;
       }
-      if (a[field].toLowerCase() > b[field].toLowerCase()) {
+      if (nestedProperty.get(a, field).toLowerCase() > nestedProperty.get(b, field).toLowerCase()) {
         return desc ? -1 : 1;
       }
       return 0;
     }
-    if (typeof a[field] === 'number') {
-      if (a[field] < b[field]) {
+    if (typeof nestedProperty.get(a, field) === 'number') {
+      if (nestedProperty.get(a, field) < nestedProperty.get(b, field)) {
         return desc ? 1 : -1;
       }
-      if (a[field] > b[field]) {
+      if (nestedProperty.get(a, field) > nestedProperty.get(b, field)) {
         return desc ? -1 : 1;
       }
       return 0;

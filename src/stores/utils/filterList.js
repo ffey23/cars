@@ -1,3 +1,4 @@
+const nestedProperty = require('nested-property');
 /**
  *
  * @param {Object[]} list - list to filter
@@ -6,5 +7,5 @@
  * @param {string} filters[].value - value of the field to filter by
  */
 export default function filterList(list, filters) {
-  return list.filter((m) => filters.every((f) => m[f.field] === f.value));
+  return list.filter((li) => filters.every((f) => nestedProperty.get(li, f.field) === f.value));
 }

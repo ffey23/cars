@@ -5,13 +5,16 @@ import { Provider } from 'mobx-react';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ModelStore from './stores/model/ModelStore';
+import MakeStore from './stores/make/MakeStore';
 import modelTransportLayer from './stores/model/modelTransportLayer';
+import makeTransportLayer from './stores/make/makeTransportLayer';
 
-const models = new ModelStore(modelTransportLayer);
+const makeStore = new MakeStore(makeTransportLayer);
+const modelStore = new ModelStore(modelTransportLayer, makeStore);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider models={models}>
+    <Provider modelStore={modelStore}>
       <App />
     </Provider>
   </React.StrictMode>,
