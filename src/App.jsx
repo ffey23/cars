@@ -2,13 +2,13 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 
-export default (observer(class App extends React.Component {
+export default inject('models')(observer(class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <div>
-          Veichle app
-        </div>
+        <ul>
+          {this.props.models.models.map((m) => <li key={m.id}>{m.id} {m.name}</li>)}
+        </ul>
       </div>
     );
   }

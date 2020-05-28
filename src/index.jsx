@@ -4,11 +4,14 @@ import './index.css';
 import { Provider } from 'mobx-react';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import cars from './stores/cars';
+import ModelStore from './stores/model/ModelStore';
+import modelTransportLayer from './stores/model/modelTransportLayer';
+
+const models = new ModelStore(modelTransportLayer);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider cars={cars}>
+    <Provider models={models}>
       <App />
     </Provider>
   </React.StrictMode>,
