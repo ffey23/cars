@@ -7,7 +7,7 @@ export default inject('modelStore')(observer(class App extends React.Component {
   render() {
     
 
-    const {setCurrentPage, setFilters, setSortBy} = this.props.modelStore.pagination;
+    const {setCurrentPage, setFilters, setSortBy, previousPage, nextPage, list} = this.props.modelStore.pagination;
     const {selectModel, selectedModel} = this.props.modelStore;
     
 
@@ -31,15 +31,15 @@ export default inject('modelStore')(observer(class App extends React.Component {
     return (
       <div className="App">
         <ul>
-          {this.props.modelStore.modelsList.map((m) => <li key={m.id}>{m.id} {m.name} {m.make.name}</li>)}
+          {list.map((m) => <li key={m.id}>{m.id} {m.name} {m.make.name}</li>)}
         </ul>
         <button
-           onClick={() => setCurrentPage(this.props.modelStore.previousPage)}
+           onClick={() => setCurrentPage(previousPage)}
         >
-            Go to {this.props.modelStore.previousPage}
+            Go to {previousPage}
         </button>
         <button
-          onClick={() => setCurrentPage(this.props.modelStore.nextPage)}
+          onClick={() => setCurrentPage(nextPage)}
         >Go to {this.props.modelStore.nextPage}</button>
         <button
           onClick={() => setFilters([

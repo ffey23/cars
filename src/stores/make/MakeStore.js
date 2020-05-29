@@ -1,5 +1,6 @@
 import { observable, decorate, action } from 'mobx';
 import Make from './Make';
+import Pagination from '../../common/utils/Pagination';
 
 class MakeStore {
     api;
@@ -8,8 +9,11 @@ class MakeStore {
 
     isLoading = false;
 
+    pagination;
+
     constructor(api) {
       this.api = api;
+      this.pagination = new Pagination(this.makes);
     }
 
     loadMakes() {
@@ -43,6 +47,7 @@ decorate(MakeStore, {
   makes: observable,
   isLoading: observable,
   updateMakeFromServer: action,
+  pagination: observable,
 });
 
 export default MakeStore;
