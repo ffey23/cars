@@ -1,5 +1,5 @@
 import {
-  observable, decorate, action, computed,
+  observable, decorate, action,
 } from 'mobx';
 import { v4 } from 'uuid';
 
