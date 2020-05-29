@@ -1,7 +1,7 @@
 import {
   observable, action, computed, decorate,
 } from 'mobx';
-import viewList from './viewList';
+import getPaginatedList from './getPaginatedList';
 import filterList from './filterList';
 
 class Pagination {
@@ -30,7 +30,7 @@ class Pagination {
       const {
         unsortedList, sortBy, filters, currentPage, perPage,
       } = this;
-      return viewList(unsortedList, {
+      return getPaginatedList(unsortedList, {
         sortBy, filters, currentPage, perPage,
       });
     }

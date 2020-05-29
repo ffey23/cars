@@ -14,7 +14,7 @@ const modelStore = new ModelStore(modelApi, makeStore);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider modelStore={modelStore}>
+    <Provider modelStore={modelStore} makeStore={makeStore}>
       <App />
     </Provider>
   </React.StrictMode>,

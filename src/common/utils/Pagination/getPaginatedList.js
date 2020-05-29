@@ -14,7 +14,7 @@ import filterList from './filterList';
  * @param {number} paginationParams.perPage - how many records per mage
  * @param {function(Object) : Object} mutateRecord - mutates elements of the list at the begining
  */
-export default function viewList(list, paginationParams, mutateRecord = (x) => x) {
+export default function getPaginatedList(list, paginationParams, mutateRecord = (x) => x) {
   const {
     filters, sortBy, currentPage, perPage,
   } = paginationParams;

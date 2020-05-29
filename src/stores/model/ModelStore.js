@@ -1,10 +1,8 @@
 import {
-  observable, decorate, action, computed,
+  observable, decorate, action,
 } from 'mobx';
-import viewList from '../utils/viewList';
-import filterList from '../utils/filterList';
 import Model from './Model';
-import Pagination from '../../common/Pagination';
+import Pagination from '../../common/utils/Pagination';
 
 class ModelStore {
     makeStore;
@@ -22,7 +20,7 @@ class ModelStore {
     constructor(api, makeStore) {
       this.makeStore = makeStore;
       this.api = api;
-      this.pagination = new Pagination();
+      this.pagination = new Pagination(this.models);
       this.loadModels();
     }
 
@@ -49,31 +47,6 @@ class ModelStore {
       }
       model.updateFromJson(json);
     }
-
-    // creates list view records
-    get modelsList() {
-      const { models, pagination } = this;
-      return viewList(models, pagination);
-    }
-
-    // Filtered records count needed for total pages number
-    get modelsListCount() {
-      return filterList(
-        this.models,
-        this.pagination.filters,
-      ).length;
-    }
-
-    get previousPage() {
-      const { currentPage } = this.pagination;
-      return currentPage === 1 ? null : currentPage - 1;
-    }
-
-    get nextPage() {
-      const { modelsListCount } = this;
-      const { currentPage, perPage } = this.pagination;
-      return (currentPage * perPage < modelsListCount) ? currentPage + 1 : null;
-    }
 }
 
 decorate(ModelStore, {
@@ -84,10 +57,6 @@ decorate(ModelStore, {
   updateModelFromServer: action,
   selectModel: action,
   pagination: observable,
-  modelsList: computed,
-  modelsListCount: computed,
-  previousPage: computed,
-  nextPage: computed,
 });
 
 export default ModelStore;

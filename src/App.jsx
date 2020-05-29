@@ -2,12 +2,13 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 
-export default inject('modelStore')(observer(class App extends React.Component {
+export default inject('modelStore', 'makeStore')(observer(class App extends React.Component {
 
   render() {
     
 
-    const {setCurrentPage, setFilters, setSortBy, previousPage, nextPage, list} = this.props.modelStore.pagination;
+    const {setCurrentPage, setFilters, setSortBy, previousPage, nextPage, list: modelList} = this.props.modelStore.pagination;
+    const { list: makeList } = this.props.makeStore.pagination;
     const {selectModel, selectedModel} = this.props.modelStore;
     
 
@@ -31,7 +32,7 @@ export default inject('modelStore')(observer(class App extends React.Component {
     return (
       <div className="App">
         <ul>
-          {list.map((m) => <li key={m.id}>{m.id} {m.name} {m.make.name}</li>)}
+          {modelList.map((m) => <li key={m.id}>{m.id} {m.name} {m.make.name}</li>)}
         </ul>
         <button
            onClick={() => setCurrentPage(previousPage)}
@@ -40,12 +41,12 @@ export default inject('modelStore')(observer(class App extends React.Component {
         </button>
         <button
           onClick={() => setCurrentPage(nextPage)}
-        >Go to {this.props.modelStore.nextPage}</button>
+        >Go to {nextPage}</button>
         <button
           onClick={() => setFilters([
             {field: 'make.name', value: 'BMW'}
           ])}
-        >Go to {this.props.modelStore.nextPage}</button>
+        >Filter</button>
         <button
           onClick={() => setSortBy(
             {field: 'name'}
@@ -58,6 +59,9 @@ export default inject('modelStore')(observer(class App extends React.Component {
         >Select</button>
         {renderSelected()}
         {renderUpdate()}
+        <ul>
+          {makeList.map((m) => <li key={m.id}>{m.id} {m.name}</li>)}
+        </ul>
       </div>
     );
   }
