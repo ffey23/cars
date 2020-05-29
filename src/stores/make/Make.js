@@ -8,8 +8,6 @@ class Make {
 
     name = ''
 
-    // refferences to object from another stores
-
     constructor(store, id = v4()) {
       this.store = store;
       this.id = id;

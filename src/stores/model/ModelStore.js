@@ -24,10 +24,9 @@ class ModelStore {
       this.loadModels();
     }
 
+    // When loading models we also load makes
     loadModels() {
       this.isLoading = true;
-
-      // We also need makes information for displaying models
       Promise.all([this.api.fetchModels(), this.makeStore.loadMakes()])
         .then(([fetchedModels]) => {
           fetchedModels.forEach((json) => this.updateModelFromServer(json));
