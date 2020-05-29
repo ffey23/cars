@@ -9,7 +9,7 @@ import Pagination from '../../common/Pagination';
 class ModelStore {
     makeStore;
 
-    transportLayer;
+    api;
 
     models = [];
 
@@ -19,9 +19,9 @@ class ModelStore {
 
     pagination;
 
-    constructor(transportLayer, makeStore) {
+    constructor(api, makeStore) {
       this.makeStore = makeStore;
-      this.transportLayer = transportLayer;
+      this.api = api;
       this.pagination = new Pagination();
       this.loadModels();
     }
@@ -30,7 +30,7 @@ class ModelStore {
       this.isLoading = true;
 
       // We also need makes information for displaying models
-      Promise.all([this.transportLayer.fetchModels(), this.makeStore.loadMakes()])
+      Promise.all([this.api.fetchModels(), this.makeStore.loadMakes()])
         .then(([fetchedModels]) => {
           fetchedModels.forEach((json) => this.updateModelFromServer(json));
           this.isLoading = false;

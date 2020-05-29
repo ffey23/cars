@@ -5,47 +5,43 @@ class Pagination {
 
     filters = [];
 
-      currentPage = 1;
+    currentPage = 1;
 
-      perPage = 6;
+    perPage = 6;
 
-      constructor(initParams = {
-        sortBy: null,
-        filters: [],
-        currentPage: 1,
-        perPage: 2,
-      }) {
-        this.setParams(initParams);
-      }
+    constructor(store, initParams = {
+      sortBy: null,
+      filters: [],
+      currentPage: 1,
+      perPage: 2,
+    }) {
+      this.setParams(initParams);
+    }
 
-      /**
-       *  MANIPULATE PAGINATION
-      */
-
-      setParams = (params) => {
-        this.sortBy = params.sortBy;
-        this.filters = params.filters;
-        this.currentPage = params.currentPage;
-        this.perPage = params.perPage;
-      }
+    setParams = (params) => {
+      this.sortBy = params.sortBy;
+      this.filters = params.filters;
+      this.currentPage = params.currentPage;
+      this.perPage = params.perPage;
+    }
 
 
-      // going to the first page after sorting changes
-      setSortBy = (sortBy) => {
-        this.sortBy = sortBy;
-        this.currentPage = 1;
-      }
+    // going to the first page after sorting changes
+    setSortBy = (sortBy) => {
+      this.sortBy = sortBy;
+      this.currentPage = 1;
+    }
 
-      // everything stays the same, just page changes
-      setCurrentPage = (page) => {
-        this.currentPage = page;
-      }
+    // everything stays the same, just page changes
+    setCurrentPage = (page) => {
+      this.currentPage = page;
+    }
 
-      // when filters change, go to the first page
-      setFilters = (filters) => {
-        this.filters = filters;
-        this.currentPage = 1;
-      }
+    // when filters change, go to the first page
+    setFilters = (filters) => {
+      this.filters = filters;
+      this.currentPage = 1;
+    }
 }
 
 decorate(Pagination, {

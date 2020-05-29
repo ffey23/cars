@@ -1,4 +1,4 @@
-const makeTransportLayer = {
+const makeApi = {
   fetchMakes() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -20,4 +20,4 @@ const makeTransportLayer = {
 
 };
 
-export default makeTransportLayer;
+export default makeApi;

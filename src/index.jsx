@@ -6,11 +6,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ModelStore from './stores/model/ModelStore';
 import MakeStore from './stores/make/MakeStore';
-import modelTransportLayer from './stores/model/modelTransportLayer';
-import makeTransportLayer from './stores/make/makeTransportLayer';
+import modelApi from './common/api/modelApi';
+import makeApi from './common/api/makeApi';
 
-const makeStore = new MakeStore(makeTransportLayer);
-const modelStore = new ModelStore(modelTransportLayer, makeStore);
+const makeStore = new MakeStore(makeApi);
+const modelStore = new ModelStore(modelApi, makeStore);
 
 ReactDOM.render(
   <React.StrictMode>

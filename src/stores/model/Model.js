@@ -23,7 +23,7 @@ class Model {
     }
 
     updateOnServer = (json) => {
-      this.store.transportLayer.updateModel({ ...json, id: this.id })
+      this.store.api.updateModel({ ...json, id: this.id })
         .then((data) => this.updateFromJson(data));
     }
 

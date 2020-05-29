@@ -1,6 +1,6 @@
 import { v4 } from 'uuid';
 
-const modelTransportLayer = {
+const modelApi = {
   fetchModels() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -48,4 +48,4 @@ const modelTransportLayer = {
 
 };
 
-export default modelTransportLayer;
+export default modelApi;
