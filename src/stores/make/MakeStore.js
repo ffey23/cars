@@ -10,9 +10,6 @@ class MakeStore {
 
     constructor(transportLayer) {
       this.transportLayer = transportLayer;
-      // this.transportLayer.onReceiveMakeUpdate((updatedMake) =>
-      //  this.updateMakeFromServer(updatedMake));
-      // this.loadMakes();
     }
 
     loadMakes() {

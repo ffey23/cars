@@ -13,6 +13,8 @@ class ModelStore {
 
     models = [];
 
+    selectedModel = null;
+
     isLoading = false;
 
     pagination;
@@ -21,19 +23,22 @@ class ModelStore {
       this.makeStore = makeStore;
       this.transportLayer = transportLayer;
       this.pagination = new Pagination();
-      // this.transportLayer.onReceiveModelUpdate((updatedModel) =>
-      //  this.updateModelFromServer(updatedModel));
       this.loadModels();
     }
 
     loadModels() {
       this.isLoading = true;
 
+      // We also need makes information for displaying models
       Promise.all([this.transportLayer.fetchModels(), this.makeStore.loadMakes()])
         .then(([fetchedModels]) => {
           fetchedModels.forEach((json) => this.updateModelFromServer(json));
           this.isLoading = false;
         });
+    }
+
+    selectModel = (model) => {
+      this.selectedModel = model;
     }
 
     updateModelFromServer(json) {
@@ -75,7 +80,9 @@ decorate(ModelStore, {
   models: observable,
   modelFilters: observable,
   isLoading: observable,
+  selectedModel: observable,
   updateModelFromServer: action,
+  selectModel: action,
   pagination: observable,
   modelsList: computed,
   modelsListCount: computed,

@@ -22,6 +22,11 @@ class Model {
       this.id = id;
     }
 
+    updateOnServer = (json) => {
+      this.store.transportLayer.updateModel({ ...json, id: this.id })
+        .then((data) => this.updateFromJson(data));
+    }
+
     updateFromJson(json) {
       this.name = json.name;
       this.make = this.store.makeStore.resolveMake(json.makeId);

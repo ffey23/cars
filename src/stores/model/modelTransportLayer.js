@@ -42,7 +42,7 @@ const modelTransportLayer = {
           );
         }
         return reject(Error());
-      }, 5000);
+      }, 1000);
     });
   },
 
