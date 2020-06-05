@@ -8,6 +8,7 @@ import ModelStore from './stores/model/ModelStore';
 import MakeStore from './stores/make/MakeStore';
 import modelApi from './common/api/modelApi';
 import makeApi from './common/api/makeApi';
+import 'mobx-react/batchingForReactDom';
 
 const makeStore = new MakeStore(makeApi);
 const modelStore = new ModelStore(modelApi, makeStore);
