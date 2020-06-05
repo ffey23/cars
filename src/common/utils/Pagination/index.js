@@ -1,5 +1,5 @@
 import {
-  observable, action, computed, decorate,
+  observable, action, computed, decorate, autorun,
 } from 'mobx';
 import getPaginatedList from './getPaginatedList';
 import filterList from './filterList';
@@ -15,6 +15,8 @@ class Pagination {
 
     perPage = 6;
 
+    list = [];
+
     constructor(list, initParams = {
       sortBy: null,
       filters: [],
@@ -23,10 +25,13 @@ class Pagination {
     }) {
       this.unsortedList = list;
       this.setParams(initParams);
+      autorun(() => {
+        this.list = this.listComputed;
+      });
     }
 
     // creates list view records
-    get list() {
+    get listComputed() {
       const {
         unsortedList, sortBy, filters, currentPage, perPage,
       } = this;
@@ -85,7 +90,8 @@ decorate(Pagination, {
   filters: observable,
   currentPage: observable,
   perPage: observable,
-  list: computed,
+  list: observable,
+  listComputed: computed({ keepAlive: true }),
   listCount: computed,
   previousPage: computed,
   nextPage: computed,
