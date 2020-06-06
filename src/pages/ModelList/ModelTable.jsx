@@ -7,7 +7,6 @@ import ModelTableItem from './ModelTableItem';
 
 
 function ModelTable({ models }) {
-  console.log("here");
   return (
     <div className="model-table">
       {models.map((model) => (
@@ -18,7 +17,7 @@ function ModelTable({ models }) {
 }
 
 ModelTable.propTypes = {
-  list: PropTypes.arrayOf(modelType),
+  models: PropTypes.arrayOf(modelType).isRequired,
 };
 
 export default observer(ModelTable);
