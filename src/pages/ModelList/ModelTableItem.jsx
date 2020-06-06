@@ -5,9 +5,8 @@ import modelType from '../../common/types/modelType';
 function ModelTableItem({ model }) {
   return (
     <div className="model-table-item">
-      {model.id}
-      {' '}
-      {model.name}
+      <div className="model-table-item__cell">{model.name}</div>
+      <div className="model-table-item__cell">{model.make.name}</div>
     </div>
   );
 }
