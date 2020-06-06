@@ -10,7 +10,7 @@ import ModelStore from '../../stores/model/ModelStore';
 function ModelList({ modelStore }) {
   return (
     <div className="model-list">
-      <ModelFilter />
+      <ModelFilter modelStore={modelStore} />
       <ModelTable models={modelStore.pagination.list} />
       <ModelPagination />
     </div>
