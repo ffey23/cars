@@ -7,7 +7,7 @@ const nestedProperty = require('nested-property');
 function TableItem({ item, cells, editLinkBase }) {
   return (
     <div className="model-table-item">
-      {cells.map((c) => <div className="model-table-item__cell">{nestedProperty.get(item, c)}</div>)}
+      {cells.map((c) => <div className="model-table-item__cell">{nestedProperty.get(item, c.propertyName)}</div>)}
       <Link to={`/${editLinkBase}/${item.id}`}>Edit</Link>
     </div>
   );
@@ -15,7 +15,7 @@ function TableItem({ item, cells, editLinkBase }) {
 
 TableItem.propTypes = {
   item: shape({}).isRequired,
-  cells: arrayOf(string).isRequired,
+  cells: arrayOf(shape({ label: string, propertyName: string })).isRequired,
   editLinkBase: string.isRequired,
 };
 

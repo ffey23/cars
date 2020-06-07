@@ -5,12 +5,15 @@ import ModelFilter from './ModelFilter';
 import ModelStore from '../../stores/model/ModelStore';
 import Pagination from '../../components/Pagination';
 import Table from '../../components/Table';
+import ModelTableHeader from './ModelTableHeader';
 
+const tableCells = [{ name: 'Model', propertyName: 'name' }, { name: 'Manufacturer', propertyName: 'make.name' }];
 function ModelList({ modelStore }) {
   return (
     <div className="model-list">
       <ModelFilter modelStore={modelStore} />
-      <Table data={modelStore.pagination.list} cells={['name', 'make.name']} editLinkBase="model-edit" />
+      <ModelTableHeader cells={tableCells} pagination={modelStore.pagination} />
+      <Table data={modelStore.pagination.list} cells={tableCells} editLinkBase="model-edit" />
       <Pagination pagination={modelStore.pagination} />
     </div>
   );

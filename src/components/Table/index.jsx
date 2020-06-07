@@ -16,7 +16,7 @@ function Table({ data, cells, editLinkBase }) {
 
 Table.propTypes = {
   data: arrayOf(shape({})).isRequired,
-  cells: arrayOf(string).isRequired,
+  cells: arrayOf(shape({ label: string, propertyName: string })).isRequired,
   editLinkBase: string.isRequired,
 };
 
