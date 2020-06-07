@@ -14,7 +14,7 @@ function determineArrow(cell, sortBy) {
   }
   return arrowCode;
 }
-function ModelTableHeader({ cells, pagination }) {
+function TableHeader({ cells, pagination }) {
   return (
     <div className="model-table-header">
       {cells.map((c) => {
@@ -36,9 +36,9 @@ function ModelTableHeader({ cells, pagination }) {
   );
 }
 
-ModelTableHeader.propTypes = {
+TableHeader.propTypes = {
   cells: arrayOf(shape({ label: string, propertyName: string })).isRequired,
   pagination: instanceOf(Pagination).isRequired,
 };
 
-export default observer(ModelTableHeader);
+export default observer(TableHeader);
