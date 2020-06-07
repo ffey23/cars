@@ -4,12 +4,13 @@ import { inject, observer } from 'mobx-react';
 import ModelFilter from './ModelFilter';
 import ModelStore from '../../stores/model/ModelStore';
 import Pagination from '../../components/Pagination';
+import Table from '../../components/Table';
 
 function ModelList({ modelStore }) {
   return (
     <div className="model-list">
       <ModelFilter modelStore={modelStore} />
-      <ModelTable models={modelStore.pagination.list} />
+      <Table data={modelStore.pagination.list} cells={['name', 'make.name']} editLinkBase="model-edit" />
       <Pagination pagination={modelStore.pagination} />
     </div>
   );
