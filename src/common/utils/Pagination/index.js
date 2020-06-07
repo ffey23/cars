@@ -82,6 +82,21 @@ class Pagination {
       this.filters = filters;
       this.currentPage = 1;
     }
+
+    /**
+     * 1. If not sorted by this field then sort desc
+     * 2. If sorted desc then sort asc
+     * 3. If sorted asc then unsort
+     */
+    setSortByField = (field) => {
+      if (!this.sortBy) {
+        this.setSortBy({ field, desc: true });
+      } else if (this.sortBy.desc) {
+        this.setSortBy({ field });
+      } else {
+        this.setSortBy(null);
+      }
+    }
 }
 
 decorate(Pagination, {
@@ -99,6 +114,7 @@ decorate(Pagination, {
   setCurrentPage: action,
   setFilters: action,
   setParams: action,
+  setSortByField: action,
 });
 
 export default Pagination;
