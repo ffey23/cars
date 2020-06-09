@@ -13,6 +13,11 @@ class Make {
       this.id = id;
     }
 
+    updateOnServer = (json) => this.store.api.updateMake({ ...json, id: this.id })
+      .then((data) => {
+        this.updateFromJson(data);
+      })
+
     updateFromJson(json) {
       this.name = json.name;
     }

@@ -22,10 +22,10 @@ class Model {
       this.id = id;
     }
 
-    updateOnServer = (json) => {
-      this.store.api.updateModel({ ...json, id: this.id })
-        .then((data) => this.updateFromJson(data));
-    }
+    updateOnServer = (json) => this.store.api.updateModel({ ...json, id: this.id })
+      .then((data) => {
+        this.updateFromJson(data);
+      })
 
     updateFromJson(json) {
       this.name = json.name;
