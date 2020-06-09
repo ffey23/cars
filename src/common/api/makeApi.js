@@ -18,6 +18,20 @@ const makeApi = {
     });
   },
 
+  updateMake(json) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const random = Math.random();
+        if (random < 1) {
+          return resolve(
+            { id: json.id, name: json.name },
+          );
+        }
+        return reject(Error());
+      }, 1000);
+    });
+  },
+
 };
 
 export default makeApi;
