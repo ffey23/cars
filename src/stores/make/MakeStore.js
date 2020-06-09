@@ -1,4 +1,6 @@
-import { observable, decorate, action } from 'mobx';
+import {
+  observable, decorate, action, runInAction,
+} from 'mobx';
 import Make from './Make';
 import Pagination from '../../common/utils/Pagination';
 
@@ -17,16 +19,14 @@ class MakeStore {
     }
 
     loadMakes() {
-      // Load just if not already loaded
-      if (!this.makes.length) {
-        this.isLoading = true;
-        return this.api.fetchMakes().then((fetchedMakes) => {
+      this.isLoading = true;
+      return this.api.fetchMakes().then((fetchedMakes) => {
+        runInAction(() => {
           fetchedMakes.forEach((json) => this.updateMakeFromServer(json));
           this.isLoading = false;
           return Promise.resolve(this.makes);
         });
-      }
-      return Promise.resolve(this.makes);
+      });
     }
 
     updateMakeFromServer(json) {

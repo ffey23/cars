@@ -1,5 +1,5 @@
 import {
-  observable, decorate, action,
+  observable, decorate, action, runInAction,
 } from 'mobx';
 import Model from './Model';
 import Pagination from '../../common/utils/Pagination';
@@ -21,17 +21,27 @@ class ModelStore {
       this.makeStore = makeStore;
       this.api = api;
       this.pagination = new Pagination(this.models);
-      this.loadModels();
     }
 
     // When loading models we also load makes
     loadModels() {
       this.isLoading = true;
-      Promise.all([this.api.fetchModels(), this.makeStore.loadMakes()])
-        .then(([fetchedModels]) => {
-          fetchedModels.forEach((json) => this.updateModelFromServer(json));
-          this.isLoading = false;
+      if (!this.makeStore.makes.length) {
+        Promise.all([this.api.fetchModels(), this.makeStore.loadMakes()])
+          .then(([fetchedModels]) => {
+            runInAction(() => {
+              fetchedModels.forEach((json) => this.updateModelFromServer(json));
+              this.isLoading = false;
+            });
+          });
+      } else {
+        this.api.fetchModels().then((fetchedModels) => {
+          runInAction(() => {
+            fetchedModels.forEach((json) => this.updateModelFromServer(json));
+            this.isLoading = false;
+          });
         });
+      }
     }
 
     selectModel = (model) => {

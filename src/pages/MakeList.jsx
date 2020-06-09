@@ -5,9 +5,12 @@ import MakeStore from '../stores/make/MakeStore';
 import Pagination from '../components/Pagination';
 import Table from '../components/Table';
 import TableHeader from '../components/Table/TableHeader';
+import useLoadMakes from '../common/hooks/useLoadMakes';
 
 const tableCells = [{ name: 'Make', propertyName: 'name' }];
 function MakeList({ makeStore }) {
+  useLoadMakes(makeStore);
+  if (!makeStore.makes.length) return null;
   return (
     <div className="make-list">
       <TableHeader cells={tableCells} pagination={makeStore.pagination} />

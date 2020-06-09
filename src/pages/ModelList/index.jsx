@@ -6,9 +6,12 @@ import ModelStore from '../../stores/model/ModelStore';
 import Pagination from '../../components/Pagination';
 import Table from '../../components/Table';
 import TableHeader from '../../components/Table/TableHeader';
+import useLoadModels from '../../common/hooks/useLoadModels';
 
 const tableCells = [{ name: 'Model', propertyName: 'name' }, { name: 'Manufacturer', propertyName: 'make.name' }];
 function ModelList({ modelStore }) {
+  useLoadModels(modelStore);
+  if (!modelStore.models.length) return null;
   return (
     <div className="model-list">
       <ModelFilter modelStore={modelStore} />
