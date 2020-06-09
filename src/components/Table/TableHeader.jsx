@@ -21,6 +21,7 @@ function TableHeader({ cells, pagination }) {
         const arrowCode = determineArrow(c, pagination.sortBy);
         return (
           <div
+            key={c.propertyName}
             role="button"
             className="model-table-header__cell"
             onClick={() => pagination.setSortByField(c.propertyName)}
