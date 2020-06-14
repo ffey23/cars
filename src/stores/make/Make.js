@@ -1,4 +1,6 @@
-import { observable, decorate, action } from 'mobx';
+import {
+  observable, decorate, action, runInAction,
+} from 'mobx';
 import { v4 } from 'uuid';
 
 class Make {
@@ -15,7 +17,13 @@ class Make {
 
     updateOnServer = (json) => this.store.api.updateMake({ ...json, id: this.id })
       .then((data) => {
-        this.updateFromJson(data);
+        runInAction(() => {
+          this.updateFromJson(data);
+          this.store.interfaceStore.pushNotification({
+            type: 'success',
+            message: `Make with id ${this.id} updated!`,
+          });
+        });
       })
 
     updateFromJson(json) {

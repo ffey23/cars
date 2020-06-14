@@ -7,14 +7,17 @@ import Pagination from '../../common/utils/Pagination';
 class MakeStore {
     api;
 
+    interfaceStore;
+
     makes = [];
 
     isLoading = false;
 
     pagination;
 
-    constructor(api) {
+    constructor(api, interfaceStore) {
       this.api = api;
+      this.interfaceStore = interfaceStore;
       this.pagination = new Pagination(this.makes);
     }
 

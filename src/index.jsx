@@ -9,13 +9,15 @@ import MakeStore from './stores/make/MakeStore';
 import modelApi from './common/api/modelApi';
 import makeApi from './common/api/makeApi';
 import 'mobx-react/batchingForReactDom';
+import InterfaceStore from './stores/InterfaceStore';
 
-const makeStore = new MakeStore(makeApi);
-const modelStore = new ModelStore(modelApi, makeStore);
+const interfaceStore = new InterfaceStore();
+const makeStore = new MakeStore(makeApi, interfaceStore);
+const modelStore = new ModelStore(modelApi, makeStore, interfaceStore);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider modelStore={modelStore} makeStore={makeStore}>
+    <Provider modelStore={modelStore} makeStore={makeStore} interfaceStore={interfaceStore}>
       <App />
     </Provider>
   </React.StrictMode>,

@@ -7,6 +7,8 @@ import Pagination from '../../common/utils/Pagination';
 class ModelStore {
     makeStore;
 
+    interfaceStore;
+
     api;
 
     models = [];
@@ -17,8 +19,9 @@ class ModelStore {
 
     pagination;
 
-    constructor(api, makeStore) {
+    constructor(api, makeStore, interfaceStore) {
       this.makeStore = makeStore;
+      this.interfaceStore = interfaceStore;
       this.api = api;
       this.pagination = new Pagination(this.models);
     }
@@ -27,21 +30,20 @@ class ModelStore {
     loadModels() {
       this.isLoading = true;
       if (!this.makeStore.makes.length) {
-        Promise.all([this.api.fetchModels(), this.makeStore.loadMakes()])
+        return Promise.all([this.api.fetchModels(), this.makeStore.loadMakes()])
           .then(([fetchedModels]) => {
             runInAction(() => {
               fetchedModels.forEach((json) => this.updateModelFromServer(json));
               this.isLoading = false;
             });
           });
-      } else {
-        this.api.fetchModels().then((fetchedModels) => {
-          runInAction(() => {
-            fetchedModels.forEach((json) => this.updateModelFromServer(json));
-            this.isLoading = false;
-          });
-        });
       }
+      return this.api.fetchModels().then((fetchedModels) => {
+        runInAction(() => {
+          fetchedModels.forEach((json) => this.updateModelFromServer(json));
+          this.isLoading = false;
+        });
+      });
     }
 
     selectModel = (model) => {

@@ -13,6 +13,10 @@ function updateMake(make, nameInput, history) {
     name: nameInput.current.value,
   }).then(() => {
     history.push('/make-list');
+  }).catch(() => {
+    make.store.interfaceStore.pushNotification({
+      message: 'Error while updating make!',
+    });
   });
 }
 function MakeEdit({ makeStore }) {

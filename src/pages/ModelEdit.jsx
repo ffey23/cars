@@ -14,6 +14,10 @@ function updateModel(model, modelInput, makeInput, history) {
     makeId: Number(makeInput.current.value),
   }).then(() => {
     history.push('/model-list');
+  }).catch(() => {
+    model.store.interfaceStore.pushNotification({
+      message: 'Error while updating model!',
+    });
   });
 }
 function ModelEdit({ modelStore }) {

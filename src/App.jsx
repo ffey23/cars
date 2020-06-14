@@ -12,6 +12,7 @@ import MakeList from './pages/MakeList';
 import MakeEdit from './pages/MakeEdit';
 import Error404 from './pages/Error404';
 import Navigation from './components/Navigation';
+import ToastComponent from './components/ToastComponent';
 
 export default class App extends React.Component {
 
@@ -41,6 +42,7 @@ export default class App extends React.Component {
             </Route>
           </Switch>
         </Router>
+        <ToastComponent />
       </div>
     );
   }

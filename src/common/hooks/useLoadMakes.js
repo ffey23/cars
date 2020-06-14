@@ -2,7 +2,13 @@ import { useEffect } from 'react';
 
 function useLoadMakes(makeStore) {
   useEffect(() => {
-    if (!makeStore.makes.length) makeStore.loadMakes();
+    if (!makeStore.makes.length) {
+      makeStore.loadMakes().catch(() => {
+        makeStore.interfaceStore.pushNotification({
+          message: 'Fething data error!',
+        });
+      });
+    }
   });
 }
 
