@@ -1,0 +1,64 @@
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+.loader {
+  // Makes loader-wrapper cover whole screen
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  
+  // Centers loader   
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.spinner {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.spinnerPart {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #fff;
+    border-color: #709FB0 transparent transparent transparent;
+    border-radius: 50%;
+    animation-name: spin;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+    animation-iteration-count: infinite;
+    animation: spin 2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    &:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    &:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    &:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+}
+
+.message {
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}

@@ -15,11 +15,22 @@ class InterfaceStore {
       };
     }
 
+    loader = null;
+
+    toggleLoader = (message) => {
+      if (this.loader == null) {
+        this.loader = { message };
+      } else {
+        this.loader = null;
+      }
+    }
 }
 
 decorate(InterfaceStore, {
   notification: observable,
   pushNotification: action,
+  loader: observable,
+  toggleLoader: action,
 });
 
 export default InterfaceStore;
