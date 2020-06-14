@@ -14,6 +14,11 @@ function determineArrow(cell, sortBy) {
   }
   return arrowCode;
 }
+
+function onKeyDown(e, pagination, propertyName) {
+  if (e.keyCode === 13) { pagination.setSortByField(propertyName); }
+}
+
 function TableHeader({ cells, pagination }) {
   return (
     <div className="model-table-header">
@@ -25,7 +30,7 @@ function TableHeader({ cells, pagination }) {
             role="button"
             className="model-table-header__cell"
             onClick={() => pagination.setSortByField(c.propertyName)}
-            onKeyDown={() => pagination.setSortByField(c.propertyName)}
+            onKeyDown={(e) => onKeyDown(e, pagination, c.propertyName)}
             tabIndex={0}
           >
             {c.name}
