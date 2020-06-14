@@ -1,0 +1,25 @@
+.pagination {
+    list-style-type: none;
+    text-align: center;
+}
+
+.page, .previous, .next {
+    display: inline-block;
+    padding: 0 10px;
+}
+
+.pageActive {
+    font-weight: bold;
+}
+
+.pageLink, .nextLink, .previousLink {
+    cursor: pointer;
+}
+
+
+.disabled {
+    .nextLink, .previousLink {
+        color: #888;    
+        cursor: no-drop;
+    }
+}
