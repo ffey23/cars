@@ -9,6 +9,7 @@ import MakeStore from '../stores/make/MakeStore';
 import useLoadMakes from '../common/hooks/useLoadMakes';
 
 function updateMake(make, nameInput, history) {
+  make.store.interfaceStore.toggleLoader('Updating make...');
   make.updateOnServer({
     name: nameInput.current.value,
   }).then(() => {
@@ -17,6 +18,8 @@ function updateMake(make, nameInput, history) {
     make.store.interfaceStore.pushNotification({
       message: 'Error while updating make!',
     });
+  }).finally(() => {
+    make.store.interfaceStore.toggleLoader();
   });
 }
 function MakeEdit({ makeStore }) {

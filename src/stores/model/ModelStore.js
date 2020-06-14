@@ -15,8 +15,6 @@ class ModelStore {
 
     selectedModel = null;
 
-    isLoading = false;
-
     pagination;
 
     constructor(api, makeStore, interfaceStore) {
@@ -28,20 +26,17 @@ class ModelStore {
 
     // When loading models we also load makes
     loadModels() {
-      this.isLoading = true;
       if (!this.makeStore.makes.length) {
         return Promise.all([this.api.fetchModels(), this.makeStore.loadMakes()])
           .then(([fetchedModels]) => {
             runInAction(() => {
               fetchedModels.forEach((json) => this.updateModelFromServer(json));
-              this.isLoading = false;
             });
           });
       }
       return this.api.fetchModels().then((fetchedModels) => {
         runInAction(() => {
           fetchedModels.forEach((json) => this.updateModelFromServer(json));
-          this.isLoading = false;
         });
       });
     }

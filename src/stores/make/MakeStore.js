@@ -11,7 +11,6 @@ class MakeStore {
 
     makes = [];
 
-    isLoading = false;
 
     pagination;
 
@@ -22,11 +21,9 @@ class MakeStore {
     }
 
     loadMakes() {
-      this.isLoading = true;
       return this.api.fetchMakes().then((fetchedMakes) => {
         runInAction(() => {
           fetchedMakes.forEach((json) => this.updateMakeFromServer(json));
-          this.isLoading = false;
           return Promise.resolve(this.makes);
         });
       });

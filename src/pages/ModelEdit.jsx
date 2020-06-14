@@ -9,6 +9,7 @@ import ModelStore from '../stores/model/ModelStore';
 import useLoadModels from '../common/hooks/useLoadModels';
 
 function updateModel(model, modelInput, makeInput, history) {
+  model.store.interfaceStore.toggleLoader('Updating model...');
   model.updateOnServer({
     name: modelInput.current.value,
     makeId: Number(makeInput.current.value),
@@ -18,6 +19,8 @@ function updateModel(model, modelInput, makeInput, history) {
     model.store.interfaceStore.pushNotification({
       message: 'Error while updating model!',
     });
+  }).finally(() => {
+    model.store.interfaceStore.toggleLoader();
   });
 }
 function ModelEdit({ modelStore }) {
