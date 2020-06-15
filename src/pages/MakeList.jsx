@@ -2,21 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import MakeStore from '../stores/make/MakeStore';
-import Pagination from '../components/Pagination';
-import Table from '../components/Table';
-import TableHeader from '../components/Table/TableHeader';
 import useLoadMakes from '../common/hooks/useLoadMakes';
+import FilterTable from '../components/FilterTable';
+import styles from './makelist.module.scss';
 
 const tableCells = [{ name: 'Make', propertyName: 'name' }];
 function MakeList({ makeStore }) {
   useLoadMakes(makeStore);
   if (!makeStore.makes.length) return null;
   return (
-    <div className="make-list">
-      <TableHeader cells={tableCells} pagination={makeStore.pagination} />
-      <Table data={makeStore.pagination.list} cells={tableCells} editLinkBase="make-edit" />
-      <Pagination pagination={makeStore.pagination} />
-    </div>
+    <FilterTable
+      tableCells={tableCells}
+      pagination={makeStore.pagination}
+      editLinkBase="make-edit"
+      tableHeaderClassName={styles.tableRows}
+      tableRecordClassName={styles.tableRows}
+    />
   );
 }
 

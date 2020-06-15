@@ -19,16 +19,18 @@ function onKeyDown(e, pagination, propertyName) {
   if (e.keyCode === 13) { pagination.setSortByField(propertyName); }
 }
 
-function TableHeader({ cells, pagination }) {
+function Header({
+  cells, pagination, containerClassName, cellClassName,
+}) {
   return (
-    <div className="model-table-header">
+    <div className={containerClassName}>
       {cells.map((c) => {
         const arrowCode = determineArrow(c, pagination.sortBy);
         return (
           <div
             key={c.propertyName}
             role="button"
-            className="model-table-header__cell"
+            className={cellClassName}
             onClick={() => pagination.setSortByField(c.propertyName)}
             onKeyDown={(e) => onKeyDown(e, pagination, c.propertyName)}
             tabIndex={0}
@@ -42,9 +44,16 @@ function TableHeader({ cells, pagination }) {
   );
 }
 
-TableHeader.propTypes = {
+Header.propTypes = {
   cells: arrayOf(shape({ label: string, propertyName: string })).isRequired,
   pagination: instanceOf(Pagination).isRequired,
+  containerClassName: string,
+  cellClassName: string,
 };
 
-export default observer(TableHeader);
+Header.defaultProps = {
+  containerClassName: '',
+  cellClassName: '',
+};
+
+export default observer(Header);

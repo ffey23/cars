@@ -1,0 +1,38 @@
+.container {
+    display: block;
+}
+
+.table {
+    border: 1px solid #000;
+}
+
+.tableHeader {
+    display: grid;
+    border-bottom: 1px solid #000;
+    justify-items: stretch;
+    text-align: center;
+}
+
+.tableHeaderCell {
+    justify-content: center;
+    border-right: 1px solid #000;
+    padding: 10px;
+}
+
+.tableRecord {
+    display: grid;
+    border-bottom: 1px solid #000;
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.tableRecordCell {
+    display: block;
+    border-right: 1px solid #000;
+    padding: 10px;
+    &:last-child {
+        border-right: none;
+        text-align: right;
+    }
+}

@@ -1,12 +1,14 @@
 import React from 'react';
 import { arrayOf, shape, string } from 'prop-types';
 import { observer } from 'mobx-react';
-import TableItem from './TableItem';
+import TableItem from './Record';
 
 
-function Table({ data, cells, editLinkBase }) {
+function TableData({
+  data, cells, editLinkBase, tableClassName,
+}) {
   return (
-    <div className="model-table">
+    <div className={tableClassName}>
       {data.map((item) => (
         <TableItem key={item.id} item={item} cells={cells} editLinkBase={editLinkBase} />
       ))}
@@ -14,10 +16,15 @@ function Table({ data, cells, editLinkBase }) {
   );
 }
 
-Table.propTypes = {
+TableData.propTypes = {
   data: arrayOf(shape({})).isRequired,
   cells: arrayOf(shape({ label: string, propertyName: string })).isRequired,
   editLinkBase: string.isRequired,
+  tableClassName: string,
 };
 
-export default observer(Table);
+TableData.defaultProps = {
+  tableClassName: 'table',
+};
+
+export default observer(TableData);
