@@ -5,6 +5,7 @@ import { reaction } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import { instanceOf } from 'prop-types';
 import InterfaceStore from '../stores/InterfaceStore';
+import styles from './ToastComponent.module.scss';
 
 // const ToastMessageFactory = React.createFactory(ToastMessage.animation);
 
@@ -13,9 +14,17 @@ function ToastComponent({ interfaceStore }) {
   useEffect(() => {
     const disposer = reaction(() => interfaceStore.notification, (notification) => {
       if (notification.type === 'success') {
-        container.success(notification.message, notification.title, { closeButton: true, timeOut: 3000, className: 'toast-top-right' });
+        container.success(
+          notification.message,
+          notification.title,
+          { closeButton: true, timeout: 3000, className: styles.toastSuccess },
+        );
       } else {
-        container.error(notification.message, notification.title, { closeButton: true, timeOut: 3000, className: 'toast-top-right' });
+        container.error(
+          notification.message,
+          notification.title,
+          { closeButton: true, timeOut: 3000, className: styles.toastError },
+        );
       }
     });
     return () => {
@@ -30,6 +39,7 @@ function ToastComponent({ interfaceStore }) {
           return ref;
         }}
         toastMessageFactory={React.createFactory(ToastMessageAnimated)}
+        className={styles.container}
       />
     </div>
   );

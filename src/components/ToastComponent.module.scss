@@ -1,0 +1,30 @@
+.container {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+}
+
+.toast {
+    text-align: right;
+    padding: 10px;
+    :global(.toast-close-button) {
+        font-weight: bold;
+        color: red;
+    }
+    :global(.toast-title) {
+        font-weight: bold;
+    }
+    :global(.toast-message) {
+        color: darkslategray;
+    }
+}
+
+.toastSuccess {
+    @extend .toast;
+    background-color: #b6eb7a;
+}
+
+.toastError {
+    @extend .toast;
+    background-color: #fb7813;
+}
