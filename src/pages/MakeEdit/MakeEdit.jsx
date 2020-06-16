@@ -9,6 +9,7 @@ import useLoadMakes from '../../common/hooks/useLoadMakes';
 import MakeEditStore from './MakeEditStore';
 
 function MakeEdit({ makeEditStore: store }) {
+  // Load makes if not already loaded
   useLoadMakes(store.makeStore);
   const { id } = useParams();
   const history = useHistory();
