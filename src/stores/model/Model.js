@@ -26,10 +26,6 @@ class Model {
       .then((data) => {
         runInAction(() => {
           this.updateFromJson(data);
-          this.store.interfaceStore.pushNotification({
-            type: 'success',
-            message: `Model with id ${this.id} updated!`,
-          });
         });
       })
 
