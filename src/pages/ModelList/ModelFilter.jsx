@@ -1,21 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import ModelStore from '../../stores/model/ModelStore';
+import { ModelStore } from '../../stores';
 
 function ModelFilter({ modelStore }) {
   const makeIdFilter = modelStore.pagination.filters.find((f) => f.field === 'make.id');
   const selectedMakeId = makeIdFilter && makeIdFilter.value;
+
+  function onChange(event) {
+    const filters = event.target.value === 'all' ? [] : [
+      { field: 'make.id', value: Number(event.target.value) },
+    ];
+    modelStore.pagination.setFilters(filters);
+  }
+
   return (
     <div className="model-filter">
       <div className="select">
         <select
           value={selectedMakeId}
-          onChange={(event) => modelStore.pagination.setFilters([
-            { field: 'make.id', value: Number(event.target.value) },
-          ])}
+          onChange={onChange}
         >
-          <option value={null}>All</option>
+          <option value="all">All</option>
           {modelStore.makeStore.makes.map((m) => <option value={m.id} key={m.id}>{m.name}</option>)}
         </select>
       </div>
