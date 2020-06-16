@@ -33,7 +33,7 @@ class MakeEditStore {
       }).then(() => {
         interfaceStore.pushNotification({
           type: 'success',
-          message: `Make with id ${this.id} updated!`,
+          message: `Make with id ${make.id} updated!`,
         });
         history.push('/make-list');
       }).catch(() => {
@@ -51,5 +51,6 @@ decorate(MakeEditStore, {
   nameInput: observable,
   selectMake: action,
   setNameInput: action,
+  updateMake: action,
 });
 export default MakeEditStore;
