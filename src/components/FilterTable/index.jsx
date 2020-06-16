@@ -42,6 +42,12 @@ function FilterTable({
   );
 }
 
+/**
+ * tableHeaderClassName and tableRecordClassName are required for now
+ * they determine how many columns will table have
+ * classes must have rule: grid-template-column: repeat(tableCells.length, 1fr)
+ * TODO: make better solution in future which would do it automatically
+ */
 FilterTable.propTypes = {
   tableCells: arrayOf(shape({
     name: string,
@@ -51,9 +57,9 @@ FilterTable.propTypes = {
   pagination: instanceOf(Pagination).isRequired,
   containerClassName: string,
   tableClassName: string,
-  tableHeaderClassName: string,
+  tableHeaderClassName: string.isRequired,
   tableHeaderCellClassName: string,
-  tableRecordClassName: string,
+  tableRecordClassName: string.isRequired,
   tableRecordCellClassName: string,
   top: node,
 };
@@ -61,9 +67,7 @@ FilterTable.propTypes = {
 FilterTable.defaultProps = {
   containerClassName: null,
   tableClassName: null,
-  tableHeaderClassName: null,
   tableHeaderCellClassName: null,
-  tableRecordClassName: null,
   tableRecordCellClassName: null,
   top: null,
 };
