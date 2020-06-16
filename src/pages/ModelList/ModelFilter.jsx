@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import { ModelStore } from '../../stores';
+import ModelStore from '../../stores/model/ModelStore';
 
 function ModelFilter({ modelStore }) {
   const makeIdFilter = modelStore.pagination.filters.find((f) => f.field === 'make.id');
