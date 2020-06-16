@@ -3,7 +3,7 @@ import {
   arrayOf, shape, string, instanceOf,
 } from 'prop-types';
 import { observer } from 'mobx-react';
-import Pagination from '../../common/utils/Pagination';
+import Pagination from '../../common/utils/Pagination/Pagination';
 import Header from './Header';
 import Record from './Record';
 

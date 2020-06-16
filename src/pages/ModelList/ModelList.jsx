@@ -4,8 +4,8 @@ import { inject, observer } from 'mobx-react';
 import ModelFilter from './ModelFilter';
 import ModelStore from '../../stores/model/ModelStore';
 import useLoadModels from '../../common/hooks/useLoadModels';
-import FilterTable from '../../components/FilterTable';
-import styles from './index.module.scss';
+import FilterTable from '../../components/FilterTable/FilterTable';
+import styles from './ModelList.module.scss';
 
 const tableCells = [{ name: 'Model', propertyName: 'name' }, { name: 'Manufacturer', propertyName: 'make.name' }];
 function ModelList({ modelStore }) {

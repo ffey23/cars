@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Observer, observer } from 'mobx-react';
 import ReactPaginate from 'react-paginate';
-import PaginationClass from '../common/utils/Pagination';
+import PaginationClass from '../common/utils/Pagination/Pagination';
 import styles from './Pagination.module.scss';
 
 function Pagination({ pagination }) {

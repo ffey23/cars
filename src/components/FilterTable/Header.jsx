@@ -3,7 +3,7 @@ import {
   shape, string, arrayOf, instanceOf,
 } from 'prop-types';
 import { observer } from 'mobx-react';
-import Pagination from '../../common/utils/Pagination';
+import Pagination from '../../common/utils/Pagination/Pagination';
 
 function determineArrow(cell, sortBy) {
   let arrowCode;

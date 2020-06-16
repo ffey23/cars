@@ -4,8 +4,8 @@ import {
 } from 'prop-types';
 import { observer } from 'mobx-react';
 import PaginationComponent from '../Pagination';
-import Pagination from '../../common/utils/Pagination';
-import styles from './index.module.scss';
+import Pagination from '../../common/utils/Pagination/Pagination';
+import styles from './FilterTable.module.scss';
 import Table from './Table';
 
 function addCustomClass(className) {

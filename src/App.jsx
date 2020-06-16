@@ -6,7 +6,7 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-import ModelList from './pages/ModelList';
+import ModelList from './pages/ModelList/ModelList';
 import ModelEdit from './pages/ModelEdit';
 import MakeList from './pages/MakeList';
 import MakeEdit from './pages/MakeEdit';
