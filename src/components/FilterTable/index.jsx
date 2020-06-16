@@ -3,7 +3,8 @@ import {
   instanceOf, arrayOf, string, shape, node,
 } from 'prop-types';
 import { observer } from 'mobx-react';
-import Pagination from '../Pagination';
+import PaginationComponent from '../Pagination';
+import Pagination from '../../common/utils/Pagination';
 import styles from './index.module.scss';
 import Table from './Table';
 
@@ -37,7 +38,7 @@ function FilterTable({
         recordClassName={`${styles.tableRecord}${addCustomClass(tableRecordClassName)}`}
         recordCellClassName={`${styles.tableRecordCell}${addCustomClass(tableRecordCellClassName)}`}
       />
-      <Pagination pagination={pagination} />
+      <PaginationComponent pagination={pagination} />
     </div>
   );
 }
