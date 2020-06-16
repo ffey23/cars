@@ -10,14 +10,21 @@ import modelApi from './common/api/modelApi';
 import makeApi from './common/api/makeApi';
 import 'mobx-react/batchingForReactDom';
 import InterfaceStore from './stores/InterfaceStore';
+import MakeEditStore from './pages/MakeEdit/MakeEditStore';
 
 const interfaceStore = new InterfaceStore();
 const makeStore = new MakeStore(makeApi, interfaceStore);
 const modelStore = new ModelStore(modelApi, makeStore, interfaceStore);
+const makeEditStore = new MakeEditStore(makeStore, interfaceStore);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider modelStore={modelStore} makeStore={makeStore} interfaceStore={interfaceStore}>
+    <Provider
+      modelStore={modelStore}
+      makeStore={makeStore}
+      interfaceStore={interfaceStore}
+      makeEditStore={makeEditStore}
+    >
       <App />
     </Provider>
   </React.StrictMode>,

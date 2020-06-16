@@ -19,10 +19,6 @@ class Make {
       .then((data) => {
         runInAction(() => {
           this.updateFromJson(data);
-          this.store.interfaceStore.pushNotification({
-            type: 'success',
-            message: `Make with id ${this.id} updated!`,
-          });
         });
       })
 

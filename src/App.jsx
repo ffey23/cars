@@ -9,7 +9,7 @@ import {
 import ModelList from './pages/ModelList/ModelList';
 import ModelEdit from './pages/ModelEdit';
 import MakeList from './pages/MakeList';
-import MakeEdit from './pages/MakeEdit';
+import MakeEdit from './pages/MakeEdit/MakeEdit';
 import Error404 from './pages/Error404';
 import Navigation from './components/Navigation';
 import ToastComponent from './components/ToastComponent';
