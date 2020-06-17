@@ -13,8 +13,6 @@ class ModelStore {
 
     models = [];
 
-    selectedModel = null;
-
     pagination;
 
     /**
@@ -34,19 +32,21 @@ class ModelStore {
 
     // When loading models we also load makes
     loadModels() {
-      this.setLoadingDataStatus('pending');
       if (!this.makeStore.makes.length) {
-        return Promise.all([this.api.fetchModels(), this.makeStore.loadMakes()])
-          .then(([fetchedModels]) => {
+        this.setLoadingDataStatus('pending', true);
+        return Promise.all([this.api.fetchModels(), this.makeStore.api.fetchMakes()])
+          .then(([fetchedModels, fetchedMakes]) => {
             runInAction(() => {
-              this.setLoadingDataStatus('success');
+              this.setLoadingDataStatus('success', true);
+              fetchedMakes.forEach((json) => this.makeStore.updateMakeFromServer(json));
               fetchedModels.forEach((json) => this.updateModelFromServer(json));
             });
           }).catch((error) => {
-            this.setLoadingDataStatus('none');
+            this.setLoadingDataStatus('none', true);
             throw error;
           });
       }
+      this.setLoadingDataStatus('pending');
       return this.api.fetchModels().then((fetchedModels) => {
         runInAction(() => {
           this.setLoadingDataStatus('success');
@@ -58,12 +58,9 @@ class ModelStore {
       });
     }
 
-    setLoadingDataStatus = (status) => {
+    setLoadingDataStatus = (status, includeMake) => {
       this.loadingDataStatus = status;
-    }
-
-    selectModel = (model) => {
-      this.selectedModel = model;
+      if (includeMake) this.makeStore.loadingDataStatus = status;
     }
 
     updateModelFromServer(json) {
@@ -78,11 +75,8 @@ class ModelStore {
 
 decorate(ModelStore, {
   models: observable,
-  modelFilters: observable,
   isLoading: observable,
-  selectedModel: observable,
   updateModelFromServer: action,
-  selectModel: action,
   pagination: observable,
   loadingDataStatus: observable,
   setLoadingDataStatus: action,

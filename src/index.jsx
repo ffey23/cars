@@ -13,11 +13,13 @@ import InterfaceStore from './stores/InterfaceStore';
 import MakeEditStore from './pages/MakeEdit/MakeEditStore';
 import ModelEditStore from './pages/ModelEdit/ModelEditStore';
 import ModelListStore from './pages/ModelList/ModelListStore';
+import MakeListStore from './pages/MakeList/MakeListStore';
 
 const interfaceStore = new InterfaceStore();
 const makeStore = new MakeStore(makeApi, interfaceStore);
 const modelStore = new ModelStore(modelApi, makeStore, interfaceStore);
 const modelListStore = new ModelListStore(modelStore);
+const makeListStore = new MakeListStore(makeStore);
 const makeEditStore = new MakeEditStore(makeStore, interfaceStore);
 const modelEditStore = new ModelEditStore(modelStore, interfaceStore);
 
@@ -30,6 +32,7 @@ ReactDOM.render(
       modelListStore={modelListStore}
       makeEditStore={makeEditStore}
       modelEditStore={modelEditStore}
+      makeListStore={makeListStore}
     >
       <App />
     </Provider>

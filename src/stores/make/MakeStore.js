@@ -14,6 +14,14 @@ class MakeStore {
 
     pagination;
 
+    /**
+     * none - before any fetching
+     * pending - fetching request sent
+     * success - data was fetched
+     * failure - failure happened while fetching data
+     */
+    loadingDataStatus = 'none';
+
     constructor(api, interfaceStore) {
       this.api = api;
       this.interfaceStore = interfaceStore;
@@ -21,12 +29,21 @@ class MakeStore {
     }
 
     loadMakes() {
+      this.setLoadingDataStatus('pending');
       return this.api.fetchMakes().then((fetchedMakes) => {
         runInAction(() => {
+          this.setLoadingDataStatus('success');
           fetchedMakes.forEach((json) => this.updateMakeFromServer(json));
           return Promise.resolve(this.makes);
         });
+      }).catch((error) => {
+        this.setLoadingDataStatus('none');
+        throw error;
       });
+    }
+
+    setLoadingDataStatus = (status) => {
+      this.loadingDataStatus = status;
     }
 
     updateMakeFromServer(json) {
@@ -48,6 +65,8 @@ decorate(MakeStore, {
   isLoading: observable,
   updateMakeFromServer: action,
   pagination: observable,
+  loadingDataStatus: observable,
+  setLoadingDataStatus: action,
 });
 
 export default MakeStore;
