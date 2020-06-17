@@ -9,6 +9,7 @@
     "animate.css": "^4.1.0",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
+    "mobx-react-form": "^2.0.8",
     "nested-property": "^2.0.0",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
