@@ -3,7 +3,7 @@ const modelApi = {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const random = Math.random();
-        if (random < 1) {
+        if (random < 0.25) {
           return resolve([
             { id: '1', makeId: 1, name: '325e' },
             { id: '2', makeId: 4, name: 'Pickup' },

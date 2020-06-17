@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 function useLoadModels(modelStore) {
   useEffect(() => {
-    if (!modelStore.models.length) {
+    if (!modelStore.models.length && modelStore.loadingDataStatus !== 'pending') {
       modelStore.interfaceStore.toggleLoader('Loading models...');
       modelStore.loadModels().catch(() => {
         modelStore.interfaceStore.pushNotification({
@@ -12,7 +12,7 @@ function useLoadModels(modelStore) {
         modelStore.interfaceStore.toggleLoader();
       });
     }
-  });
+  }, [modelStore]);
 }
 
 export default useLoadModels;

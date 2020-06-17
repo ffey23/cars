@@ -12,10 +12,12 @@ import 'mobx-react/batchingForReactDom';
 import InterfaceStore from './stores/InterfaceStore';
 import MakeEditStore from './pages/MakeEdit/MakeEditStore';
 import ModelEditStore from './pages/ModelEdit/ModelEditStore';
+import ModelListStore from './pages/ModelList/ModelListStore';
 
 const interfaceStore = new InterfaceStore();
 const makeStore = new MakeStore(makeApi, interfaceStore);
 const modelStore = new ModelStore(modelApi, makeStore, interfaceStore);
+const modelListStore = new ModelListStore(modelStore);
 const makeEditStore = new MakeEditStore(makeStore, interfaceStore);
 const modelEditStore = new ModelEditStore(modelStore, interfaceStore);
 
@@ -25,6 +27,7 @@ ReactDOM.render(
       modelStore={modelStore}
       makeStore={makeStore}
       interfaceStore={interfaceStore}
+      modelListStore={modelListStore}
       makeEditStore={makeEditStore}
       modelEditStore={modelEditStore}
     >
