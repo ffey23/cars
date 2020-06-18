@@ -10,7 +10,7 @@ import useResetForm from '../../common/hooks/useResetForm';
 
 function MakeEdit({ makeEditStore: store }) {
   // Load makes if not already loaded
-  useLoadMakes(store.makeStore);
+  useLoadMakes(store.dataStore);
 
   // Reset form on leaving page;
   useResetForm(store);
