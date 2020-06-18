@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
-function useLoadModels(viewStore) {
+function useResetErrorMessage(viewStore) {
   useEffect(() => () => {
     viewStore.setWasLoading(false);
   }, [viewStore]);
 }
 
-export default useLoadModels;
+export default useResetErrorMessage;
