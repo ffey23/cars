@@ -1,12 +1,13 @@
 export default function loadModels(modelStore) {
   if (!modelStore.models.length && modelStore.loadingDataStatus !== 'pending') {
     modelStore.interfaceStore.toggleLoader('Loading models...');
-    modelStore.loadModels().catch(() => {
+    return modelStore.loadModels().catch(() => {
       modelStore.interfaceStore.pushNotification({
         message: 'Fething data error!',
       });
-    }).finally(() => {
+    }).then(() => {
       modelStore.interfaceStore.toggleLoader();
     });
   }
+  return Promise.resolve();
 }
