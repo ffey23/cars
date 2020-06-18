@@ -10,7 +10,7 @@ import useResetForm from '../../common/hooks/useResetForm';
 
 function ModelEdit({ modelEditStore: store }) {
   // Load models if not already loaded
-  useLoadModels(store.modelStore);
+  useLoadModels(store.dataStore);
 
   // Reset form on leaving page;
   useResetForm(store);
@@ -39,7 +39,7 @@ function ModelEdit({ modelEditStore: store }) {
         </label>
         {/* eslint-disable-next-line */}
         <select {...form.$('makeId').bind()}>
-          {store.modelStore.makeStore.makes.map(
+          {store.dataStore.makeStore.makes.map(
             (m) => <option value={m.id} key={m.id}>{m.name}</option>,
           )}
         </select>

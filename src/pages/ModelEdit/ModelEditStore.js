@@ -1,47 +1,19 @@
 import {
-  decorate, observable, action, reaction, computed,
+  decorate, observable, action,
 } from 'mobx';
 import dvr from 'mobx-react-form/lib/validators/DVR';
 import validatorjs from 'validatorjs';
 import MobxReactForm from 'mobx-react-form';
+import ViewStore from '../../common/stores/ViewStore';
 
-class ModelEditStore {
-    modelStore;
-
-    interfaceStore;
-
+class ModelEditStore extends ViewStore {
     model;
 
     form;
 
-    constructor(modelStore, interfaceStore) {
-      this.modelStore = modelStore;
-      this.interfaceStore = interfaceStore;
-      reaction(() => this.modelStore.loadingDataStatus, (status) => {
-        if (status === 'pending') this.setWasLoading(true);
-      });
-    }
-
-    setWasLoading(wasLoading) {
-      this.wasLoading = wasLoading;
-    }
-
-    wasLoading = false;
-
-    get wasLoadingError() {
-      return this.wasLoading && this.modelStore.loadingDataStatus === 'none';
-    }
-
-    get loadingStatusMessage() {
-      const status = this.modelStore.loadingDataStatus;
-      if (status === 'pending') return 'Loading data...';
-
-      if (this.wasLoadingError) { return 'Error while loading data! Try to refresh the page!'; }
-
-      if (status === 'none') return '';
-
-      // this is on success
-      return null;
+    // eslint-disable-next-line
+    constructor(...params) {
+      super(...params);
     }
 
     initForm = () => {
@@ -77,7 +49,7 @@ class ModelEditStore {
 
     selectModel = (id) => {
       if (!this.model || this.model.id !== id) {
-        this.model = this.modelStore.models.find((m) => m.id === id);
+        this.model = this.dataStore.models.find((m) => m.id === id);
         this.initForm();
       }
     }
@@ -111,9 +83,5 @@ decorate(ModelEditStore, {
   selectModel: action,
   initForm: action,
   updateModel: action,
-  loadingStatusMessage: computed,
-  wasLoading: observable,
-  setWasLoading: action,
-  wasLoadingError: computed,
 });
 export default ModelEditStore;
