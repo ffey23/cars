@@ -14,6 +14,7 @@ function Pagination({ pagination }) {
           pageCount={pageCount}
           pageRangeDisplayed={10}
           marginPagesDisplayed={1}
+          forcePage={pagination.currentPage - 1}
           onPageChange={({ selected }) => pagination.setCurrentPage(selected + 1)}
           containerClassName={styles.pagination}
           pageClassName={styles.page}
