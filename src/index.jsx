@@ -26,8 +26,8 @@ const history = syncHistoryWithStore(browserHistory, routingStore);
 const interfaceStore = new InterfaceStore(routingStore);
 const makeStore = new MakeStore(makeApi, interfaceStore);
 const modelStore = new ModelStore(modelApi, makeStore, interfaceStore);
-const modelListStore = new ModelListStore(modelStore);
-const makeListStore = new MakeListStore(makeStore);
+const modelListStore = new ModelListStore(modelStore, interfaceStore);
+const makeListStore = new MakeListStore(makeStore, interfaceStore);
 const makeEditStore = new MakeEditStore(makeStore, interfaceStore);
 const modelEditStore = new ModelEditStore(modelStore, interfaceStore);
 

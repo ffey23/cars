@@ -15,11 +15,21 @@ class ViewStore {
 
       wasLoading = false;
 
-      constructor(dataStore, interfaceStore) {
+      isCurrentPage = false;
+
+      constructor(dataStore, interfaceStore, routePathName) {
         this.dataStore = dataStore;
         this.interfaceStore = interfaceStore;
         reaction(() => this.dataStore.loadingDataStatus, (status) => {
           if (status === 'pending') this.setWasLoading(true);
+        });
+        this.interfaceStore.routing.history.subscribe((location) => {
+          if (location.pathname.split('/')[1] === routePathName) {
+            this.isCurrentPage = true;
+          } else if (this.isCurrentPage) {
+            this.isCurrentPage = false;
+            this.setWasLoading(false);
+          }
         });
       }
 
@@ -50,5 +60,6 @@ decorate(ViewStore, {
   wasLoading: observable,
   setWasLoading: action,
   wasLoadingError: computed,
+  isCurrentPage: observable,
 });
 export default ViewStore;
