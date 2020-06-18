@@ -8,13 +8,13 @@ import FilterTable from '../../components/FilterTable/FilterTable';
 import styles from './MakeList.module.scss';
 
 function MakeList({ makeListStore: store }) {
-  useLoadMakes(store.makeStore);
+  useLoadMakes(store.dataStore);
   useResetErrorMessage(store);
   if (store.loadingStatusMessage != null) return store.loadingStatusMessage;
   return (
     <FilterTable
       tableCells={store.tableCells}
-      pagination={store.makeStore.pagination}
+      pagination={store.dataStore.pagination}
       editLinkBase="make-edit"
       tableHeaderClassName={styles.tableRows}
       tableRecordClassName={styles.tableRows}

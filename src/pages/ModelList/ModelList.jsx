@@ -9,15 +9,15 @@ import FilterTable from '../../components/FilterTable/FilterTable';
 import styles from './ModelList.module.scss';
 
 function ModelList({ modelListStore: store }) {
-  useLoadModels(store.modelStore);
+  useLoadModels(store.dataStore);
   useResetErrorMessage(store);
   if (store.loadingStatusMessage != null) return store.loadingStatusMessage;
   return (
     <FilterTable
       tableCells={store.tableCells}
-      pagination={store.modelStore.pagination}
+      pagination={store.dataStore.pagination}
       editLinkBase="model-edit"
-      top={<ModelFilter modelStore={store.modelStore} />}
+      top={<ModelFilter modelStore={store.dataStore} />}
       tableHeaderClassName={styles.tableRows}
       tableRecordClassName={styles.tableRows}
     />

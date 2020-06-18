@@ -1,46 +1,10 @@
-import {
-  decorate, computed, reaction, observable, action,
-} from 'mobx';
+import ViewStore from '../../common/stores/ViewStore';
 
-class MakeListStore {
-      makeStore;
-
-      tableCells = [{ name: 'Make', propertyName: 'name' }];
-
-      constructor(makeStore) {
-        this.makeStore = makeStore;
-        reaction(() => this.makeStore.loadingDataStatus, (status) => {
-          if (status === 'pending') this.setWasLoading(true);
-        });
-      }
-
-      setWasLoading(wasLoading) {
-        this.wasLoading = wasLoading;
-      }
-
-      wasLoading = false;
-
-      get wasLoadingError() {
-        return this.wasLoading && this.makeStore.loadingDataStatus === 'none';
-      }
-
-      get loadingStatusMessage() {
-        const status = this.makeStore.loadingDataStatus;
-        if (status === 'pending') return 'Loading data...';
-
-        if (this.wasLoadingError) { return 'Error while loading data! Try to refresh the page!'; }
-
-        if (status === 'none') return '';
-
-        // this is on success
-        return null;
-      }
+class ModelListStore extends ViewStore {
+  constructor(dataStore) {
+    super(dataStore);
+    this.tableCells = [{ name: 'Make', propertyName: 'name' }];
+  }
 }
 
-decorate(MakeListStore, {
-  loadingStatusMessage: computed,
-  wasLoading: observable,
-  setWasLoading: action,
-  wasLoadingError: computed,
-});
-export default MakeListStore;
+export default ModelListStore;
