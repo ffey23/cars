@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { Provider } from 'mobx-react';
+import navigationStore from './stores/NavigationStore';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ModelStore from './stores/model/ModelStore';
@@ -15,7 +16,7 @@ import ModelEditStore from './pages/ModelEdit/ModelEditStore';
 import ModelListStore from './pages/ModelList/ModelListStore';
 import MakeListStore from './pages/MakeList/MakeListStore';
 
-const interfaceStore = new InterfaceStore();
+const interfaceStore = new InterfaceStore(navigationStore);
 const makeStore = new MakeStore(makeApi, interfaceStore);
 const modelStore = new ModelStore(modelApi, makeStore, interfaceStore);
 const modelListStore = new ModelListStore(modelStore);

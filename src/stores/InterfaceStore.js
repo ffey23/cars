@@ -5,6 +5,12 @@ import {
 class InterfaceStore {
     notification = null;
 
+    navigationStore;
+
+    constructor(navigationStore) {
+      this.navigationStore = navigationStore;
+    }
+
     pushNotification = ({ type = 'error', title, message }) => {
       const newTitle = title || (type === 'error' ? 'Error' : 'Success');
       const newMessage = message || (type === 'error' ? 'An error occurred!' : 'Action was succesfull!');
