@@ -18,7 +18,6 @@ class MakeStore {
      * none - before any fetching
      * pending - fetching request sent
      * success - data was fetched
-     * failure - failure happened while fetching data
      */
     loadingDataStatus = 'none';
 
