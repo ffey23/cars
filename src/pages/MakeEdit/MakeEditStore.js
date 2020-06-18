@@ -1,10 +1,8 @@
 import {
   decorate, observable, action,
 } from 'mobx';
-import dvr from 'mobx-react-form/lib/validators/DVR';
-import validatorjs from 'validatorjs';
-import MobxReactForm from 'mobx-react-form';
 import ViewStore from '../../common/stores/ViewStore';
+import formInitializer from '../../common/utils/formInitializer';
 
 class MakeEditStore extends ViewStore {
     make;
@@ -17,10 +15,6 @@ class MakeEditStore extends ViewStore {
     }
 
     initForm = () => {
-      const plugins = {
-        dvr: dvr(validatorjs),
-      };
-
       const fields = {
         name: {
           label: 'Name',
@@ -29,17 +23,9 @@ class MakeEditStore extends ViewStore {
           value: this.make.name,
         },
       };
+      const onSuccess = this.updateMake;
 
-      const hooks = {
-        onSuccess: () => {
-          this.updateMake();
-        },
-        onError(form) {
-          form.invalidate('There was an error!');
-        },
-      };
-
-      this.form = new MobxReactForm({ fields }, { plugins, hooks });
+      this.form = formInitializer({ fields, onSuccess });
     }
 
     selectMake = (id) => {
