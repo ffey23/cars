@@ -95,7 +95,7 @@ class ModelEditStore {
           type: 'success',
           message: `Model with id ${model.id} updated!`,
         });
-        interfaceStore.navigationStore.history.push('/model-list');
+        interfaceStore.routing.history.push('/model-list');
       }).catch(() => {
         interfaceStore.pushNotification({
           message: 'Error while updating model!',

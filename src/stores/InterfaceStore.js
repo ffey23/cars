@@ -5,10 +5,10 @@ import {
 class InterfaceStore {
     notification = null;
 
-    navigationStore;
+    routing;
 
-    constructor(navigationStore) {
-      this.navigationStore = navigationStore;
+    constructor(routing) {
+      this.routing = routing;
     }
 
     pushNotification = ({ type = 'error', title, message }) => {

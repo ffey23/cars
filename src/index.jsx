@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router } from 'react-router';
 import './index.css';
 import { Provider } from 'mobx-react';
-import navigationStore from './stores/NavigationStore';
+import { RouterStore, syncHistoryWithStore } from 'mobx-react-router';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ModelStore from './stores/model/ModelStore';
@@ -16,7 +17,13 @@ import ModelEditStore from './pages/ModelEdit/ModelEditStore';
 import ModelListStore from './pages/ModelList/ModelListStore';
 import MakeListStore from './pages/MakeList/MakeListStore';
 
-const interfaceStore = new InterfaceStore(navigationStore);
+const { createBrowserHistory } = require('history');
+
+const browserHistory = createBrowserHistory();
+const routingStore = new RouterStore();
+const history = syncHistoryWithStore(browserHistory, routingStore);
+
+const interfaceStore = new InterfaceStore(routingStore);
 const makeStore = new MakeStore(makeApi, interfaceStore);
 const modelStore = new ModelStore(modelApi, makeStore, interfaceStore);
 const modelListStore = new ModelListStore(modelStore);
@@ -34,8 +41,12 @@ ReactDOM.render(
       makeEditStore={makeEditStore}
       modelEditStore={modelEditStore}
       makeListStore={makeListStore}
+      routing={routingStore}
     >
-      <App />
+      {' '}
+      <Router history={history}>
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),

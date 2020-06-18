@@ -92,7 +92,7 @@ class MakeEditStore {
           type: 'success',
           message: `Make with id ${make.id} updated!`,
         });
-        interfaceStore.navigationStore.history.push('/make-list');
+        interfaceStore.routing.history.push('/make-list');
       }).catch(() => {
         interfaceStore.pushNotification({
           message: 'Error while updating make!',

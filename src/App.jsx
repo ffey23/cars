@@ -1,12 +1,12 @@
 /* eslint-disable */
 import React from 'react';
-import navigationStore from './stores/NavigationStore';
 import {
   Router,
   Route,
   Switch,
   Redirect,
 } from 'react-router';
+import {observer, inject} from 'mobx-react';
 import ModelList from './pages/ModelList/ModelList';
 import ModelEdit from './pages/ModelEdit/ModelEdit';
 import MakeList from './pages/MakeList/MakeList';
@@ -16,10 +16,10 @@ import Navigation from './components/Navigation';
 import ToastComponent from './components/ToastComponent';
 import Loader from './components/Loader';
 
-function App() {
+function App({routing}) {
   return (
     <div className="App">
-      <Router history={navigationStore.history}>
+      <Router history={routing.history}>
         <Navigation />
         <Switch>
           <Route exact path="/">
@@ -48,4 +48,4 @@ function App() {
   )   
 }
 
-export default App;
+export default inject('routing')(observer(App));
