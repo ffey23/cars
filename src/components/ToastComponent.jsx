@@ -28,7 +28,7 @@ function ToastComponent({ interfaceStore }) {
       }
     });
     return () => {
-      disposer.dipose();
+      disposer();
     };
   });
   return (
