@@ -15,11 +15,10 @@ function ModelEdit({ modelEditStore: store }) {
   // Reset form on leaving page;
   useResetForm(store);
 
-  const { models } = store.modelStore;
   const { id } = useParams();
 
   // Waiting until models are loaded
-  if (!models.length) return null;
+  if (store.loadingStatusMessage != null) return store.loadingStatusMessage;
 
   // Select model if not already selected
   store.selectModel(id);

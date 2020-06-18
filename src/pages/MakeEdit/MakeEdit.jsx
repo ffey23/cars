@@ -18,7 +18,7 @@ function MakeEdit({ makeEditStore: store }) {
   const { id } = useParams();
 
   // Waiting until makes are loaded
-  if (!store.makeStore.makes.length) return null;
+  if (store.loadingStatusMessage != null) return store.loadingStatusMessage;
 
   // Selecting make if not already selected or if id
   store.selectMake(id);
