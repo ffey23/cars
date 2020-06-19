@@ -2,7 +2,7 @@ import {
   decorate, observable, action,
 } from 'mobx';
 import ViewStore from '../../common/stores/ViewStore';
-import formInitializer from '../../common/utils/formInitializer';
+import modelFormInitializer from '../../common/utils/FormInitializers/modelFormInitalizer';
 
 class ModelEditStore extends ViewStore {
     model;
@@ -15,22 +15,12 @@ class ModelEditStore extends ViewStore {
     }
 
     initForm = () => {
-      const fields = {
-        name: {
-          label: 'Name',
-          placeholder: 'Insert Name',
-          rules: 'required|string',
-          value: this.model.name,
-        },
-        makeId: {
-          label: 'Make',
-          placeholder: 'Select Make',
-          value: this.model.make.id,
-        },
-      };
       const onSuccess = this.updateModel;
-
-      this.form = formInitializer({ fields, onSuccess });
+      this.form = modelFormInitializer({
+        initName: this.model.name,
+        initMakeId: this.model.make.id,
+        onSuccess,
+      });
     }
 
     selectModel = (id) => {

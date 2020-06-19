@@ -2,7 +2,7 @@ import {
   decorate, observable, action,
 } from 'mobx';
 import ViewStore from '../../common/stores/ViewStore';
-import formInitializer from '../../common/utils/formInitializer';
+import makeFormInitializer from '../../common/utils/FormInitializers/makeFormInitalizer';
 
 class MakeEditStore extends ViewStore {
     make;
@@ -15,17 +15,8 @@ class MakeEditStore extends ViewStore {
     }
 
     initForm = () => {
-      const fields = {
-        name: {
-          label: 'Name',
-          placeholder: 'Insert Name',
-          rules: 'required|string',
-          value: this.make.name,
-        },
-      };
       const onSuccess = this.updateMake;
-
-      this.form = formInitializer({ fields, onSuccess });
+      this.form = makeFormInitializer({ initName: this.make.name, onSuccess });
     }
 
     selectMake = (id) => {
