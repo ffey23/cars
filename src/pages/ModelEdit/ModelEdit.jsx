@@ -7,7 +7,7 @@ import { instanceOf } from 'prop-types';
 import ModelEditStore from './ModelEditStore';
 import useLoadModels from '../../common/hooks/useLoadModels';
 import useResetForm from '../../common/hooks/useResetForm';
-import ModelForm from '../../components/ModelForm';
+import ModelForm from '../../components/forms/ModelForm';
 
 function ModelEdit({ modelEditStore: store }) {
   // Load models if not already loaded

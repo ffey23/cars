@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react';
 import MakeListStore from './MakeListStore';
 import FilterTable from '../../components/FilterTable/FilterTable';
 import styles from './MakeList.module.scss';
-import MakeForm from '../../components/MakeForm';
+import MakeForm from '../../components/forms/MakeForm';
 
 function MakeList({ makeListStore: store }) {
   if (store.loadingStatusMessage != null) return store.loadingStatusMessage;

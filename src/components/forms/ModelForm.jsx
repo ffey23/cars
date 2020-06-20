@@ -1,8 +1,8 @@
 import React from 'react';
 import { oneOfType, instanceOf } from 'prop-types';
 import { observer } from 'mobx-react';
-import ModelEditStore from '../pages/ModelEdit/ModelEditStore';
-import ModelListStore from '../pages/ModelList/ModelListStore';
+import ModelEditStore from '../../pages/ModelEdit/ModelEditStore';
+import ModelListStore from '../../pages/ModelList/ModelListStore';
 
 function ModelForm({ store }) {
   const { form } = store;

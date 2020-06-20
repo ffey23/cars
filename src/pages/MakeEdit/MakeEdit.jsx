@@ -7,7 +7,7 @@ import { instanceOf } from 'prop-types';
 import useLoadMakes from '../../common/hooks/useLoadMakes';
 import MakeEditStore from './MakeEditStore';
 import useResetForm from '../../common/hooks/useResetForm';
-import MakeForm from '../../components/MakeForm';
+import MakeForm from '../../components/forms/MakeForm';
 
 function MakeEdit({ makeEditStore: store }) {
   // Load makes if not already loaded
