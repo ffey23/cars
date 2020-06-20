@@ -13,7 +13,7 @@ function ModelList({ modelListStore: store }) {
     <FilterTable
       tableCells={store.tableCells}
       pagination={store.dataStore.pagination}
-      editLinkBase="model-edit"
+      editLinkBase={store.editLinkBase}
       filters={<ModelFilter modelStore={store.dataStore} />}
       tableHeaderClassName={styles.tableRows}
       tableRecordClassName={styles.tableRows}

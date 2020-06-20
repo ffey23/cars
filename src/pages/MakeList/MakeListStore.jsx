@@ -20,6 +20,8 @@ class MakeListStore extends ViewStore {
     this.initForm();
   }
 
+  editLinkBase = 'make-edit';
+
   form;
 
   isAddModalOpened = false;

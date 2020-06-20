@@ -25,6 +25,8 @@ class ModelListStore extends ViewStore {
 
   form;
 
+  editLinkBase = 'model-edit';
+
   isAddModalOpened = false;
 
   addModalContentLabel = 'Add Model'

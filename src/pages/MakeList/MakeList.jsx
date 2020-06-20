@@ -13,7 +13,7 @@ function MakeList({ makeListStore: store }) {
       <FilterTable
         tableCells={store.tableCells}
         pagination={store.dataStore.pagination}
-        editLinkBase="make-edit"
+        editLinkBase={store.editLinkBase}
         tableHeaderClassName={styles.tableRows}
         tableRecordClassName={styles.tableRows}
         onAddButtonClick={store.toggleAddModal}
