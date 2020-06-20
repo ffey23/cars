@@ -57,6 +57,12 @@ class ModelStore {
       });
     }
 
+    async addModel(json) {
+      const response = await this.api.addModel(json);
+      this.updateModelFromServer(response);
+      return response;
+    }
+
     setLoadingDataStatus = (status, includeMake) => {
       this.loadingDataStatus = status;
       if (includeMake) this.makeStore.loadingDataStatus = status;
@@ -79,6 +85,7 @@ decorate(ModelStore, {
   pagination: observable,
   loadingDataStatus: observable,
   setLoadingDataStatus: action,
+  addModel: action,
 });
 
 export default ModelStore;

@@ -41,6 +41,12 @@ class MakeStore {
       });
     }
 
+    async addMake(json) {
+      const response = await this.api.addMake(json);
+      this.updateMakeFromServer(response);
+      return response;
+    }
+
     setLoadingDataStatus = (status) => {
       this.loadingDataStatus = status;
     }
@@ -66,6 +72,7 @@ decorate(MakeStore, {
   pagination: observable,
   loadingDataStatus: observable,
   setLoadingDataStatus: action,
+  addMake: action,
 });
 
 export default MakeStore;
