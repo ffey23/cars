@@ -1,8 +1,9 @@
 import React from 'react';
 import {
-  instanceOf, arrayOf, string, shape, node,
+  instanceOf, arrayOf, string, shape, node, func, bool,
 } from 'prop-types';
 import { observer } from 'mobx-react';
+import Modal from 'react-modal';
 import PaginationComponent from '../Pagination';
 import Pagination from '../../common/utils/Pagination/Pagination';
 import styles from './FilterTable.module.scss';
@@ -17,8 +18,17 @@ function FilterTable({
   tableCells,
   pagination,
   editLinkBase,
-  top,
+  filters,
+  isAddModalOpened,
+  onAddButtonClick,
+  onAddModalRequestClose,
+  addModalForm,
+  addModalContentLabel,
   containerClassName,
+  topClassName,
+  addButtonContainerClassName,
+  addButtonrClassName,
+  filtersContainerClassName,
   tableClassName,
   tableHeaderClassName,
   tableHeaderCellClassName,
@@ -27,7 +37,20 @@ function FilterTable({
 }) {
   return (
     <div className={`${styles.container}${addCustomClass(containerClassName)}`}>
-      { top }
+      <div className={`${styles.top}${addCustomClass(topClassName)}`}>
+        <div className={`${styles.addButtonContainer}${addCustomClass(addButtonContainerClassName)}`}>
+          <button
+            type="button"
+            className={`${styles.addButton}${addCustomClass(addButtonrClassName)}`}
+            onClick={onAddButtonClick}
+          >
+            +
+          </button>
+        </div>
+        <div className={`${styles.filtersContainer}${addCustomClass(filtersContainerClassName)}`}>
+          { filters }
+        </div>
+      </div>
       <Table
         pagination={pagination}
         tableCells={tableCells}
@@ -39,6 +62,13 @@ function FilterTable({
         recordCellClassName={`${styles.tableRecordCell}${addCustomClass(tableRecordCellClassName)}`}
       />
       <PaginationComponent pagination={pagination} />
+      <Modal
+        isOpen={isAddModalOpened}
+        contentLabel={addModalContentLabel}
+        onRequestClose={onAddModalRequestClose}
+      >
+        { addModalForm }
+      </Modal>
     </div>
   );
 }
@@ -57,20 +87,33 @@ FilterTable.propTypes = {
   editLinkBase: string.isRequired,
   pagination: instanceOf(Pagination).isRequired,
   containerClassName: string,
+  topClassName: string,
+  addButtonContainerClassName: string,
+  addButtonrClassName: string,
+  filtersContainerClassName: string,
   tableClassName: string,
   tableHeaderClassName: string.isRequired,
   tableHeaderCellClassName: string,
   tableRecordClassName: string.isRequired,
   tableRecordCellClassName: string,
-  top: node,
+  filters: node,
+  isAddModalOpened: bool.isRequired,
+  onAddButtonClick: func.isRequired,
+  onAddModalRequestClose: func.isRequired,
+  addModalForm: node.isRequired,
+  addModalContentLabel: string.isRequired,
 };
 
 FilterTable.defaultProps = {
   containerClassName: null,
+  topClassName: null,
+  addButtonContainerClassName: null,
+  addButtonrClassName: null,
+  filtersContainerClassName: null,
   tableClassName: null,
   tableHeaderCellClassName: null,
   tableRecordCellClassName: null,
-  top: null,
+  filters: null,
 };
 
 export default observer(FilterTable);
