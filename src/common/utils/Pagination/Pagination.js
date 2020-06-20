@@ -40,6 +40,15 @@ class Pagination {
       });
     }
 
+    get filteredListComputed() {
+      const {
+        unsortedList, sortBy, filters,
+      } = this;
+      return getPaginatedList(unsortedList, {
+        sortBy, filters, currentPage: 1, perPage: Infinity,
+      });
+    }
+
     // filtered records count needed for total pages number
     get listCount() {
       return filterList(
@@ -87,6 +96,19 @@ class Pagination {
       this.currentPage = 1;
     }
 
+    // Go to table page where item with specified id
+    // If item is in filtered list, go to the page of filtered list
+    // If item is not in filtered list, clear filters and go to needed page
+    goToPageWhereIsItem = (id) => {
+      let index = this.filteredListComputed.findIndex((item) => id === item.id);
+      if (index !== -1) this.setCurrentPage(Math.ceil((index + 1) / this.perPage));
+      else {
+        this.filters = [];
+        index = this.filteredListComputed.findIndex((item) => id === item.id);
+        this.setCurrentPage(Math.ceil((index + 1) / this.perPage));
+      }
+    }
+
     /**
      * 1. If not sorted by this field then sort desc
      * 2. If sorted desc then sort asc
@@ -111,6 +133,7 @@ decorate(Pagination, {
   perPage: observable,
   list: observable,
   listComputed: computed,
+  filteredListComputed: computed,
   listCount: computed,
   previousPage: computed,
   nextPage: computed,
@@ -120,6 +143,7 @@ decorate(Pagination, {
   setParams: action,
   setSortByField: action,
   listPagesCount: computed,
+  goToPageWhereIsItem: action,
 });
 
 export default Pagination;
