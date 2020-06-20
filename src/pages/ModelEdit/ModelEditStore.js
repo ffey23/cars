@@ -32,7 +32,7 @@ class ModelEditStore extends ViewStore {
 
     updateModel = () => {
       const {
-        interfaceStore, model, form,
+        interfaceStore, model, form, dataStore,
       } = this;
       interfaceStore.toggleLoader('Updating model...');
       model.updateOnServer({
@@ -43,6 +43,7 @@ class ModelEditStore extends ViewStore {
           type: 'success',
           message: `Model with id ${model.id} updated!`,
         });
+        dataStore.pagination.goToPageWhereIsItem(model.id);
         interfaceStore.routing.history.push('/model-list');
       }).catch(() => {
         interfaceStore.pushNotification({

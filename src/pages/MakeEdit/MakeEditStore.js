@@ -32,7 +32,9 @@ class MakeEditStore extends ViewStore {
     }
 
     updateMake = () => {
-      const { interfaceStore, make, form } = this;
+      const {
+        interfaceStore, dataStore, make, form,
+      } = this;
       interfaceStore.toggleLoader('Updating make...');
       make.updateOnServer({
         name: form.values().name,
@@ -41,6 +43,7 @@ class MakeEditStore extends ViewStore {
           type: 'success',
           message: `Make with id ${make.id} updated!`,
         });
+        dataStore.pagination.goToPageWhereIsItem(make.id);
         interfaceStore.routing.history.push('/make-list');
       }).catch(() => {
         interfaceStore.pushNotification({

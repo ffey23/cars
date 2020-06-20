@@ -7,6 +7,7 @@ import { instanceOf } from 'prop-types';
 import useLoadMakes from '../../common/hooks/useLoadMakes';
 import MakeEditStore from './MakeEditStore';
 import useResetForm from '../../common/hooks/useResetForm';
+import MakeForm from '../../components/MakeForm';
 
 function MakeEdit({ makeEditStore: store }) {
   // Load makes if not already loaded
@@ -22,22 +23,8 @@ function MakeEdit({ makeEditStore: store }) {
 
   // Selecting make if not already selected or if id
   store.selectMake(id);
-  const { form } = store;
   return (
-    <div className="model-edit">
-      <form>
-        <label htmlFor={form.$('name').id}>
-          {form.$('name').label}
-        </label>
-        {/* eslint-disable-next-line */}
-        <input {...form.$('name').bind()} />
-        <p>{form.$('name').error}</p>
-
-        <button type="submit" onClick={form.onSubmit}>Submit</button>
-
-        <p>{form.error}</p>
-      </form>
-    </div>
+    <MakeForm store={store} />
   );
 }
 
