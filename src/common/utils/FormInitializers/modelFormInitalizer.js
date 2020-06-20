@@ -5,7 +5,7 @@ export default function modelFormInitalizer({ initName = '', initMakeId = '', on
     name: {
       label: 'Name',
       placeholder: 'Insert Name',
-      ruler: 'required|string',
+      rules: 'required|string',
       value: initName,
     },
     makeId: {
