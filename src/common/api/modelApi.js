@@ -1,3 +1,5 @@
+import { v4 } from 'uuid';
+
 const modelApi = {
   fetchModels() {
     return new Promise((resolve, reject) => {
@@ -41,6 +43,20 @@ const modelApi = {
         }
         return reject(Error());
       }, 1000);
+    });
+  },
+
+  addModel(json) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const random = Math.random();
+        if (random < 1) {
+          return resolve(
+            { id: v4(), makeId: json.makeId, name: json.name },
+          );
+        }
+        return reject(Error());
+      }, 2000);
     });
   },
 
