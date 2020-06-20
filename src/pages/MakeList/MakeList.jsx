@@ -14,13 +14,13 @@ function MakeList({ makeListStore: store }) {
         tableCells={store.tableCells}
         pagination={store.dataStore.pagination}
         editLinkBase={store.editLinkBase}
-        tableHeaderClassName={styles.tableRows}
-        tableRecordClassName={styles.tableRows}
         onAddButtonClick={store.toggleAddModal}
         onAddModalRequestClose={store.toggleAddModal}
         isAddModalOpened={store.isAddModalOpened}
         addModalForm={<MakeForm store={store} />}
         addModalContentLabel={store.addModalContentLabel}
+        tableHeaderClassName={styles.tableRows}
+        tableRecordClassName={styles.tableRows}
       />
     </div>
   );

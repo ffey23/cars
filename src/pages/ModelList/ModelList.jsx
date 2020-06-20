@@ -15,13 +15,13 @@ function ModelList({ modelListStore: store }) {
       pagination={store.dataStore.pagination}
       editLinkBase={store.editLinkBase}
       filters={<ModelFilter modelStore={store.dataStore} />}
-      tableHeaderClassName={styles.tableRows}
-      tableRecordClassName={styles.tableRows}
       onAddButtonClick={store.toggleAddModal}
       onAddModalRequestClose={store.toggleAddModal}
       isAddModalOpened={store.isAddModalOpened}
       addModalForm={<ModelForm store={store} />}
       addModalContentLabel={store.addModalContentLabel}
+      tableHeaderClassName={styles.tableRows}
+      tableRecordClassName={styles.tableRows}
     />
   );
 }
