@@ -9,10 +9,6 @@ class ModelListStore extends ViewStore {
   constructor(modelStore, interfaceStore) {
     const routePathName = 'model-list';
     super(modelStore, interfaceStore, routePathName);
-    this.tableCells = [
-      { name: 'Model', propertyName: 'name' },
-      { name: 'Manufacturer', propertyName: 'make.name' },
-    ];
     const unsubscribeRoute = this.interfaceStore.routing.history.subscribe((location) => {
       if (location.pathname.split('/')[1] === routePathName) {
         loadModels(modelStore).then(() => {
@@ -22,6 +18,11 @@ class ModelListStore extends ViewStore {
     });
     this.initForm();
   }
+
+  tableCells = [
+    { name: 'Model', propertyName: 'name' },
+    { name: 'Manufacturer', propertyName: 'make.name' },
+  ];
 
   form;
 
