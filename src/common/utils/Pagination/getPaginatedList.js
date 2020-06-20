@@ -21,6 +21,6 @@ export default function getPaginatedList(list, paginationParams, mutateRecord = 
 
   let resultList = list.map(mutateRecord);
   resultList = filterList(resultList, filters);
-  if (sortBy) resultList = sortList(list, sortBy);
+  if (sortBy) resultList = sortList(resultList, sortBy);
   return resultList.slice(perPage * (currentPage - 1), currentPage * perPage);
 }
