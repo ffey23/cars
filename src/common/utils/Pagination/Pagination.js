@@ -110,7 +110,7 @@ decorate(Pagination, {
   currentPage: observable,
   perPage: observable,
   list: observable,
-  listComputed: computed({ keepAlive: true }),
+  listComputed: computed,
   listCount: computed,
   previousPage: computed,
   nextPage: computed,
