@@ -5,7 +5,7 @@ import {
 /**
  * Parent class of all view stores
  * 1. Exposes business store
- * 2. Exposes internet store
+ * 2. Exposes interface store
  * 3. Exposes loading status message on page loading
  */
 class ViewStore {
