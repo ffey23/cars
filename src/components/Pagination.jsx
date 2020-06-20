@@ -6,12 +6,11 @@ import PaginationClass from '../common/utils/Pagination/Pagination';
 import styles from './Pagination.module.scss';
 
 function Pagination({ pagination }) {
-  const pageCount = Math.ceil(pagination.listCount / pagination.perPage);
   return (
     <Observer>
       { () => (
         <ReactPaginate
-          pageCount={pageCount}
+          pageCount={pagination.listPagesCount}
           pageRangeDisplayed={10}
           marginPagesDisplayed={1}
           forcePage={pagination.currentPage - 1}
