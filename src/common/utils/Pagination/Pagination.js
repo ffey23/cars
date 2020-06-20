@@ -48,6 +48,10 @@ class Pagination {
       ).length;
     }
 
+    get listPagesCount() {
+      return Math.ceil(this.listCount / this.perPage);
+    }
+
     get previousPage() {
       const { currentPage } = this;
       return currentPage === 1 ? null : currentPage - 1;
@@ -115,6 +119,7 @@ decorate(Pagination, {
   setFilters: action,
   setParams: action,
   setSortByField: action,
+  listPagesCount: computed,
 });
 
 export default Pagination;
