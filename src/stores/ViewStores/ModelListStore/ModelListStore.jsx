@@ -3,7 +3,7 @@ import {
 } from 'mobx';
 import ViewStore from '../ViewStore';
 import { loadModels } from '../../../common/services';
-import modelFormInitalizer from '../../../common/utils/FormInitializers/modelFormInitalizer';
+import { modelFormInitializer } from '../../../common/utils';
 
 class ModelListStore extends ViewStore {
   constructor(modelStore, interfaceStore) {
@@ -34,7 +34,7 @@ class ModelListStore extends ViewStore {
 
   initForm() {
     const onSuccess = this.addModel;
-    this.form = modelFormInitalizer({ initMakeId: 1, onSuccess });
+    this.form = modelFormInitializer({ initMakeId: 1, onSuccess });
   }
 
   toggleAddModal = () => {

@@ -3,7 +3,7 @@ import {
 } from 'mobx';
 import ViewStore from '../ViewStore';
 import { loadMakes } from '../../../common/services';
-import makeFormInitalizer from '../../../common/utils/FormInitializers/makeFormInitalizer';
+import { makeFormInitializer } from '../../../common/utils';
 
 class MakeListStore extends ViewStore {
   constructor(makeStore, interfaceStore) {
@@ -31,7 +31,7 @@ class MakeListStore extends ViewStore {
 
   initForm() {
     const onSuccess = this.addMake;
-    this.form = makeFormInitalizer({ onSuccess });
+    this.form = makeFormInitializer({ onSuccess });
   }
 
   toggleAddModal = () => {

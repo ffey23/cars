@@ -2,7 +2,7 @@ import {
   observable, decorate, action, runInAction,
 } from 'mobx';
 import Model from './Model';
-import Pagination from '../../common/utils/Pagination/Pagination';
+import { Pagination } from '../../common/utils';
 
 class ModelStore {
     makeStore;

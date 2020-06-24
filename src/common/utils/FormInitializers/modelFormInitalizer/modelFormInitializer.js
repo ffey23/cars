@@ -1,6 +1,6 @@
-import formInitializer from './formInitializer';
+import { formInitializer } from '..';
 
-export default function modelFormInitalizer({ initName = '', initMakeId = '', onSuccess }) {
+export default function modelFormInitializer({ initName = '', initMakeId = '', onSuccess }) {
   const fields = {
     name: {
       label: 'Name',

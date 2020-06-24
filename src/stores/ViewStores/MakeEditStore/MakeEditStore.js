@@ -2,7 +2,7 @@ import {
   decorate, observable, action,
 } from 'mobx';
 import ViewStore from '../ViewStore';
-import makeFormInitializer from '../../../common/utils/FormInitializers/makeFormInitalizer';
+import { makeFormInitializer } from '../../../common/utils';
 
 class MakeEditStore extends ViewStore {
     make;
