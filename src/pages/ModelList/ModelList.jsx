@@ -5,7 +5,7 @@ import ModelFilter from './ModelFilter/ModelFilter';
 import { ModelListStore } from '../../stores';
 import FilterTable from '../../components/FilterTable/FilterTable';
 import styles from './ModelList.module.scss';
-import ModelForm from '../../components/forms/ModelForm';
+import { ModelForm } from '../../components';
 
 function ModelList({ modelListStore: store }) {
   if (store.loadingStatusMessage != null) return store.loadingStatusMessage;
