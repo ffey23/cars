@@ -3,7 +3,7 @@ import {
   instanceOf, arrayOf, string, shape, node, func, bool,
 } from 'prop-types';
 import { observer } from 'mobx-react';
-import Modal from 'react-modal';
+import { Modal } from '..';
 import Pagination from '../../common/utils/Pagination/Pagination';
 import styles from './FilterTable.module.scss';
 import { Table, Pagination as PaginationComponent } from './components';
