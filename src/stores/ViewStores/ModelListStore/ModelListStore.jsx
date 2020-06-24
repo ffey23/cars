@@ -2,7 +2,7 @@ import {
   decorate, observable, action, runInAction,
 } from 'mobx';
 import ViewStore from '../ViewStore';
-import loadModels from '../../../common/services/loadModels';
+import { loadModels } from '../../../common/services';
 import modelFormInitalizer from '../../../common/utils/FormInitializers/modelFormInitalizer';
 
 class ModelListStore extends ViewStore {

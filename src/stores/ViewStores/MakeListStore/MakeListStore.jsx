@@ -2,7 +2,7 @@ import {
   decorate, observable, action, runInAction,
 } from 'mobx';
 import ViewStore from '../ViewStore';
-import loadMakes from '../../../common/services/loadMakes';
+import { loadMakes } from '../../../common/services';
 import makeFormInitalizer from '../../../common/utils/FormInitializers/makeFormInitalizer';
 
 class MakeListStore extends ViewStore {
