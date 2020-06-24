@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
-import MakeListStore from './MakeListStore';
+import { MakeListStore } from '../../stores';
 import FilterTable from '../../components/FilterTable/FilterTable';
 import styles from './MakeList.module.scss';
 import MakeForm from '../../components/forms/MakeForm';

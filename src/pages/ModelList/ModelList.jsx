@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import ModelFilter from './ModelFilter/ModelFilter';
-import ModelListStore from './ModelListStore';
+import { ModelListStore } from '../../stores';
 import FilterTable from '../../components/FilterTable/FilterTable';
 import styles from './ModelList.module.scss';
 import ModelForm from '../../components/forms/ModelForm';

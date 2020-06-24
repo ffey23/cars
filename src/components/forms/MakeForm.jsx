@@ -1,8 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { oneOfType, instanceOf } from 'prop-types';
-import MakeEditStore from '../../pages/MakeEdit/MakeEditStore';
-import MakeListStore from '../../pages/MakeList/MakeListStore';
+import { MakeEditStore, MakeListStore } from '../../stores';
 
 function MakeForm({ store }) {
   const { form } = store;

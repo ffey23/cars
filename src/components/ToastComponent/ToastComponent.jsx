@@ -4,7 +4,7 @@ import 'animate.css/animate.compat.css';
 import { reaction } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import { instanceOf } from 'prop-types';
-import InterfaceStore from '../../stores/InterfaceStore';
+import { InterfaceStore } from '../../stores';
 import styles from './ToastComponent.module.scss';
 
 // const ToastMessageFactory = React.createFactory(ToastMessage.animation);

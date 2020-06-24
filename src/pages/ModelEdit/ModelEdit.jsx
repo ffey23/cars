@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import { instanceOf } from 'prop-types';
-import ModelEditStore from './ModelEditStore';
+import { ModelEditStore } from '../../stores';
 import useLoadModels from '../../common/hooks/useLoadModels';
 import useResetForm from '../../common/hooks/useResetForm';
 import ModelForm from '../../components/forms/ModelForm';

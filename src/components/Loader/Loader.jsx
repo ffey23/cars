@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
-import InterfaceStore from '../../stores/InterfaceStore';
+import { InterfaceStore } from '../../stores';
 import styles from './Loader.module.scss';
 
 function Loader({ interfaceStore }) {

@@ -5,7 +5,7 @@ import {
 import { inject, observer } from 'mobx-react';
 import { instanceOf } from 'prop-types';
 import useLoadMakes from '../../common/hooks/useLoadMakes';
-import MakeEditStore from './MakeEditStore';
+import { MakeEditStore } from '../../stores';
 import useResetForm from '../../common/hooks/useResetForm';
 import MakeForm from '../../components/forms/MakeForm';
 

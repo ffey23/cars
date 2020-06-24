@@ -1,8 +1,8 @@
 import {
   decorate, observable, action,
 } from 'mobx';
-import ViewStore from '../../common/stores/ViewStore';
-import modelFormInitializer from '../../common/utils/FormInitializers/modelFormInitalizer';
+import ViewStore from '../ViewStore';
+import modelFormInitializer from '../../../common/utils/FormInitializers/modelFormInitalizer';
 
 class ModelEditStore extends ViewStore {
     model;
