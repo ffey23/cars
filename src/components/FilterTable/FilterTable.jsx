@@ -4,10 +4,9 @@ import {
 } from 'prop-types';
 import { observer } from 'mobx-react';
 import Modal from 'react-modal';
-import PaginationComponent from '../Pagination';
 import Pagination from '../../common/utils/Pagination/Pagination';
 import styles from './FilterTable.module.scss';
-import Table from './Table';
+import { Table, Pagination as PaginationComponent } from './components';
 
 function addCustomClass(className) {
   if (className == null) return '';

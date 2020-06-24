@@ -3,9 +3,8 @@ import {
   arrayOf, shape, string, instanceOf,
 } from 'prop-types';
 import { observer } from 'mobx-react';
-import Pagination from '../../common/utils/Pagination/Pagination';
-import Header from './Header';
-import Record from './Record';
+import Pagination from '../../../../common/utils/Pagination/Pagination';
+import { Header, Record } from './components';
 
 function Table({
   pagination, tableCells, editLinkBase, containerClassName, headerClassName,

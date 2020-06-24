@@ -7,14 +7,8 @@ import {
   Redirect,
 } from 'react-router';
 import {observer, inject} from 'mobx-react';
-import ModelList from './pages/ModelList/ModelList';
-import ModelEdit from './pages/ModelEdit/ModelEdit';
-import MakeList from './pages/MakeList/MakeList';
-import MakeEdit from './pages/MakeEdit/MakeEdit';
-import Error404 from './pages/Error404';
-import Navigation from './components/Navigation';
-import ToastComponent from './components/ToastComponent';
-import Loader from './components/Loader';
+import { ModelList, ModelEdit, MakeList, MakeEdit, Error404} from './pages';
+import { Navigation, ToastComponent, Loader } from './components';
 
 function App({routing}) {
   return (
