@@ -6,8 +6,8 @@ import { Provider } from 'mobx-react';
 import { RouterStore, syncHistoryWithStore } from 'mobx-react-router';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import modelApi from './common/api/modelApi';
-import makeApi from './common/api/makeApi';
+import { modelApi, makeApi } from './common/api';
+
 import 'mobx-react/batchingForReactDom';
 import {
   ModelStore,
