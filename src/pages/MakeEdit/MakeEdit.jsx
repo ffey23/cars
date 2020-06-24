@@ -4,10 +4,9 @@ import {
 } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import { instanceOf } from 'prop-types';
-import useLoadMakes from '../../common/hooks/useLoadMakes';
+import { useLoadMakes, useResetForm } from '../../common/hooks';
 import { MakeEditStore } from '../../stores';
-import useResetForm from '../../common/hooks/useResetForm';
-import MakeForm from '../../components/forms/MakeForm';
+import { MakeForm } from '../../components';
 
 function MakeEdit({ makeEditStore: store }) {
   // Load makes if not already loaded
