@@ -13,7 +13,7 @@
     "mobx-react-form": "^2.0.8",
     "mobx-react-router": "^4.1.0",
     "nested-property": "^2.0.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^9.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -21,7 +21,7 @@
     "react-paginate": "^6.3.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "react-toastr": "^3.0.0",
     "uuid": "^8.1.0",
     "validatorjs": "^3.18.1"
